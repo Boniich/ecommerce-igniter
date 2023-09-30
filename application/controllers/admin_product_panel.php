@@ -17,4 +17,10 @@ class Admin_product_panel extends CI_Controller
         $this->load->view('admin_panel/products/admin_products_index');
         $this->load->view('admin_panel/products/show_products_table');
     }
+
+    public function delete_product($id)
+    {
+        $this->admin_product_model->delete_product($id);
+        redirect('admin_panel/products');
+    }
 }
