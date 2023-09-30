@@ -23,7 +23,7 @@ class Admin_login extends CI_Controller
         $password = $this->input->post('password');
 
         if ($this->admin_login_model->login($email, $password)) {
-            redirect('admin_panel');
+            redirect('admin_panel/products');
         } else {
             $data['error_message'] = 'Invalid username or password';
             $this->load->view('head/head');
