@@ -16,6 +16,7 @@ class Admin_product_panel extends CI_Controller
         $this->load->view('head/head', $data);
         $this->load->view('admin_panel/products/admin_products_index');
         $this->load->view('admin_panel/products/show_products_table');
+        $this->load->view('admin_panel/products/modals/delete_product_modal');
     }
 
     public function delete_product($id)
