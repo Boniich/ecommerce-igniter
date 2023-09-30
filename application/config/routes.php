@@ -51,5 +51,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 */
 $route['default_controller'] = 'admin_login';
 $route['admin_panel/products'] = 'admin_product_panel/index';
+$route['admin_panel/clients'] = 'admin_panel_client/index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
