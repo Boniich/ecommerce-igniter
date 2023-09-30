@@ -16,5 +16,12 @@ class Admin_panel_client extends CI_Controller
         $this->load->view('head/head', $data);
         $this->load->view('admin_panel/clients/admin_clients_index');
         $this->load->view('admin_panel/clients/show_clients_table');
+        $this->load->view('admin_panel/clients/modals/delete_client_modal');
+    }
+
+    public function delete_client($id)
+    {
+        $this->admin_client_model->delete_client($id);
+        redirect('admin_panel/clients');
     }
 }
