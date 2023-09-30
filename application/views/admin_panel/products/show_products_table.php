@@ -26,7 +26,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <td>$<?php echo $product['price']; ?></td>
                     <td><a href="">Details</a></td>
                     <td><a href="">Edit</a></td>
-                    <td><a href="">Delete</a></td>
+                    <td><a href="#" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteProductModal" data-id="<?php echo $product['id']; ?>">
+                            Delete
+                        </a></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
