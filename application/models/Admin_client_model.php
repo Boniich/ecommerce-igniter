@@ -17,4 +17,10 @@ class Admin_client_model extends CI_Model
 
         return $result;
     }
+
+    public function delete_client($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete($this->_table);
+    }
 }
