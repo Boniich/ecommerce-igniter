@@ -32,5 +32,22 @@ insert into products (name,description,image,stock,price) values ('Teclado Noga'
 insert into products (name,description,image,stock,price) values ('Mouse Noga', 'Este es un mouse noga',null, 10, 41.5);
 */
 
+### clients
+
+CREATE TABLE clients (
+        id int NOT NULL AUTO_INCREMENT,
+        full_name varchar(70) not null,
+        image varchar(100) null,
+        email varchar(70) not null unique,
+        password varchar(120) not null,
+        dni varchar(15) not null,
+        PRIMARY KEY (id)
+);
+
+insert into clients (full_name,image,email,password,dni) values ('Juan Carlos', null, 'juan@gmail.com', '123456','12.546.89');
+insert into clients (full_name,image,email,password,dni) values ('Pietro Vales', null, 'pietro@gmail.com', '123456','45.555.666');
+
+
 select * from admins;
+select * from clients;
 select * from products;
