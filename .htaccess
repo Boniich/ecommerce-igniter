@@ -1,0 +1,10 @@
+
+
+#By default, the index.php file will be included in your URLs:
+  
+# Create a .htaccess file in your root folder and paste the below code 
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?/$1 [L]
+
