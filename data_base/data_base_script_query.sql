@@ -27,13 +27,14 @@ CREATE TABLE products (
         price double not null,
         PRIMARY KEY (id)
 );
-
 insert into products (name,description,image,stock,price) values ('Teclado Noga', 'Este es un teclado noga',null, 10, 50.5);
 insert into products (name,description,image,stock,price) values ('Mouse Noga', 'Este es un mouse noga',null, 10, 41.5);
 */
 
+
 ### clients
 
+/*
 CREATE TABLE clients (
         id int NOT NULL AUTO_INCREMENT,
         full_name varchar(70) not null,
@@ -44,9 +45,9 @@ CREATE TABLE clients (
         PRIMARY KEY (id)
 );
 
-insert into clients (full_name,image,email,password,dni) values ('Juan Carlos', null, 'juan@gmail.com', '123456','12.546.89');
-insert into clients (full_name,image,email,password,dni) values ('Pietro Vales', null, 'pietro@gmail.com', '123456','45.555.666');
-
+insert into clients (full_name,image,email,password,dni) values ('Juan Carlos', null, 'juan2@gmail.com', '123456','12.546.89');
+insert into clients (full_name,image,email,password,dni) values ('Pietro Vales', null, 'pietro2@gmail.com', '123456','45.555.666');
+*/
 
 select * from admins;
 select * from clients;
