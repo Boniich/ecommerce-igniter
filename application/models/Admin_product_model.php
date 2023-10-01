@@ -23,4 +23,9 @@ class Admin_product_model extends CI_Model
         $this->db->where('id', $id);
         $this->db->delete($this->_table);
     }
+
+    public function create_product($data)
+    {
+        $this->db->insert($this->_table, $data);
+    }
 }
