@@ -29,4 +29,23 @@ class Admin_product_panel extends CI_Controller
         $this->admin_product_model->delete_product($id);
         redirect('admin_panel/products');
     }
+
+    public function create_product()
+    {
+        $name = $this->input->post('name');
+        $description = $this->input->post('description');
+        $stock = $this->input->post('stock');
+        $price = $this->input->post('price');
+        $image = null;
+
+        $product = array(
+            'name' => $name,
+            'description' => $description,
+            'stock' => $stock,
+            'price' => $price,
+            'image' => $image,
+        );
+
+        $this->admin_product_model->create_product($product);
+    }
 }
