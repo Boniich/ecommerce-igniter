@@ -36,7 +36,7 @@ class Admin_product_panel extends CI_Controller
         $description = $this->input->post('description');
         $stock = $this->input->post('stock');
         $price = $this->input->post('price');
-        $image = null;
+        $image = $this->_do_upload();
 
         $product = array(
             'name' => $name,
@@ -47,5 +47,21 @@ class Admin_product_panel extends CI_Controller
         );
 
         $this->admin_product_model->create_product($product);
+    }
+
+    private function _do_upload()
+    {
+        $config['upload_path'] = './uploads/products';
+        $config['allowed_types'] = 'jpg|png';
+        $config['max_size'] = 200;
+        $config['max_width'] = 500;
+        $config['max_height'] = 400;
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('image')) {
+            $image = 'products/' . $this->upload->data('file_name');
+            return $image;
+        }
     }
 }
