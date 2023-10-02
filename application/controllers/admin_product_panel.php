@@ -49,7 +49,7 @@ class Admin_product_panel extends CI_Controller
         );
 
         $this->admin_product_model->create_product($product);
-        $this->session->set_flashdata('producto_creado', 'Producto creado exitosamente.');
+        $this->session->set_flashdata('product_created', 'Producto creado exitosamente.');
         redirect('admin_panel/products');
     }
 
