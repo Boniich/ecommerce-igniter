@@ -18,6 +18,11 @@ class Admin_client_model extends CI_Model
         return $result;
     }
 
+    public function create_client($data)
+    {
+        $this->db->insert($this->_table, $data);
+    }
+
     public function delete_client($id)
     {
         $this->db->where('id', $id);
