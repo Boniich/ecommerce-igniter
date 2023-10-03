@@ -20,7 +20,7 @@ class Admin_product_panel extends CI_Controller
         $data['products'] = $this->admin_product_model->get_all_products();
         $this->load->view('head/head', $data);
         $this->load->view('admin_panel/products/admin_products_index');
-        $this->load->view($this->_path_view_folder . 'feedback/product_create_successfully');
+        $this->load->view('feedback/successfully_alert');
         $this->load->view('admin_panel/products/show_products_table');
         $this->load->view($this->_path_view_folder . '/modals/create_product_modal');
         $this->load->view('admin_panel/products/modals/delete_product_modal');
@@ -49,7 +49,7 @@ class Admin_product_panel extends CI_Controller
         );
 
         $this->admin_product_model->create_product($product);
-        $this->session->set_flashdata('product_created', 'Producto creado exitosamente.');
+        $this->session->set_flashdata('sucessfully_alert', 'Producto creado exitosamente.');
         redirect('admin_panel/products');
     }
 
