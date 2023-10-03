@@ -7,6 +7,7 @@ class Admin_panel_client extends CI_Controller
     {
         parent::__construct();
         $this->load->model('admin_client_model');
+        $this->load->library('session');
     }
 
     public function index()
@@ -15,6 +16,7 @@ class Admin_panel_client extends CI_Controller
         $data['clients'] = $this->admin_client_model->get_all_clients();
         $this->load->view('head/head', $data);
         $this->load->view('admin_panel/clients/admin_clients_index');
+        $this->load->view('feedback/successfully_alert');
         $this->load->view('admin_panel/clients/show_clients_table');
         $this->load->view('admin_panel/clients/modals/delete_client_modal');
     }
@@ -22,6 +24,7 @@ class Admin_panel_client extends CI_Controller
     public function delete_client($id)
     {
         $this->admin_client_model->delete_client($id);
+        $this->session->set_flashdata('sucessfully_alert', 'Cliente eliminado exitosamente.');
         redirect('admin_panel/clients');
     }
 }
