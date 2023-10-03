@@ -14,15 +14,16 @@
         </div>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
+
+
+    <script>
+        setTimeout(() => {
+            var myAlert = document.getElementById('myAlert')
+            var bsAlert = new bootstrap.Alert(myAlert)
+
+            var alertNode = document.querySelector('.alert');
+            var alert = bootstrap.Alert.getInstance(alertNode);
+            alert.close();
+        }, 3000);
+    </script>
 <?php endif; ?>
-
-<script>
-    setTimeout(() => {
-        var myAlert = document.getElementById('myAlert')
-        var bsAlert = new bootstrap.Alert(myAlert)
-
-        var alertNode = document.querySelector('.alert');
-        var alert = bootstrap.Alert.getInstance(alertNode);
-        alert.close();
-    }, 3000);
-</script>
