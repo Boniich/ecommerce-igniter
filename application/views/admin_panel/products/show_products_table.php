@@ -9,6 +9,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <thead>
             <tr>
                 <th scope="col">#</th>
+                <th scope="col">Product ID</th>
                 <th scope="col">Name</th>
                 <th scope="col">Stock</th>
                 <th scope="col">Price</th>
@@ -18,8 +19,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($products as $product) : ?>
+            <?php foreach ($products as $key => $product) : ?>
                 <tr>
+                    <td><?php echo $key + 1 ?></td>
                     <th scope="row"><?php echo $product['id']; ?></th>
                     <td><?php echo $product['name']; ?> </td>
                     <td><?php echo $product['stock']; ?> </td>
