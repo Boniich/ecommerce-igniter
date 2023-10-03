@@ -29,6 +29,7 @@ class Admin_product_panel extends CI_Controller
     public function delete_product($id)
     {
         $this->admin_product_model->delete_product($id);
+        $this->session->set_flashdata('sucessfully_alert', 'Producto eliminado exitosamente.');
         redirect('admin_panel/products');
     }
 
