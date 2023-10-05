@@ -28,4 +28,10 @@ class Admin_product_model extends CI_Model
     {
         $this->db->insert($this->_table, $data);
     }
+
+    public function update_product($id, $data)
+    {
+        $this->db->where('id', $id);
+        $this->db->update($this->_table, $data);
+    }
 }
