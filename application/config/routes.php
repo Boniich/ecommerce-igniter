@@ -53,6 +53,7 @@ $route['default_controller'] = 'admin_login';
 
 $route['admin_panel/products'] = 'admin_product_panel/index';
 $route['delete_product/(:num)'] = 'admin_product_panel/delete_product/$1';
+$route['update_product/(:num)'] = 'admin_product_panel/update_product/$1';
 
 $route['admin_panel/clients'] = 'admin_panel_client/index';
 $route['delete_client/(:num)'] = 'admin_panel_client/delete_client/$1';
