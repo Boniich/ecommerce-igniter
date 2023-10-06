@@ -34,6 +34,12 @@ class Admin_product_panel extends CI_Controller
         redirect('admin_panel/products');
     }
 
+    public function show_product_data($id)
+    {
+        $product = $this->admin_product_model->get_one_product($id);
+        echo json_encode($product);
+    }
+
     public function create_product()
     {
         $name = $this->input->post('name');
