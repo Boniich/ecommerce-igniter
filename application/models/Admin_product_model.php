@@ -38,6 +38,8 @@ class Admin_product_model extends CI_Model
     public function update_product($id, $data)
     {
         $this->db->where('id', $id);
-        $this->db->update($this->_table, $data);
+        $result = $this->db->update($this->_table, $data);
+
+        return $result;
     }
 }

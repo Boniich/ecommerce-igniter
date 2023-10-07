@@ -30,7 +30,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" name="submit" class="btn btn-success">Update</button>
-                    <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a class="btn btn-secondary" data-bs-dismiss="modal">Close</a>
                 </div>
                 <?php echo form_close(); ?>
             </div>

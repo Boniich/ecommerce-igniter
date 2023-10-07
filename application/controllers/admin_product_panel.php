@@ -76,7 +76,10 @@ class Admin_product_panel extends CI_Controller
             'stock' => $stock,
         );
 
-        $this->admin_product_model->update_product($id, $productData);
+        if ($this->admin_product_model->update_product($id, $productData)) {
+            $this->session->set_flashdata('sucessfully_alert', 'Producto actualizado exitosamente.');
+            redirect('admin_panel/products');
+        }
     }
 
     private function _do_upload()
