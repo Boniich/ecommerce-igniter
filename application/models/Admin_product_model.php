@@ -42,4 +42,16 @@ class Admin_product_model extends CI_Model
 
         return $result;
     }
+
+    public function get_actual_product_image($id)
+    {
+        $this->db->where('id', $id);
+        $query = $this->db->get($this->_table);
+
+        $row = $query->row();
+
+        $image = $row->image;
+
+        return $image;
+    }
 }

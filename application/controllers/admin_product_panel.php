@@ -69,16 +69,39 @@ class Admin_product_panel extends CI_Controller
         $price = $this->input->post('price');
         $stock = $this->input->post('stock');
 
-        $productData = array(
-            'name' => $name,
-            'description' => $description,
-            'price' => $price,
-            'stock' => $stock,
-        );
+        if (empty($_FILES['image']['name'])) {
+            $productData = array(
+                'name' => $name,
+                'description' => $description,
+                'price' => $price,
+                'stock' => $stock,
+            );
+        } else {
+            $this->_delete_actual_image($id);
+            $image = $this->_do_upload();
+            $productData = array(
+                'name' => $name,
+                'description' => $description,
+                'price' => $price,
+                'stock' => $stock,
+                'image' => $image,
+            );
+        }
+
 
         if ($this->admin_product_model->update_product($id, $productData)) {
             $this->session->set_flashdata('sucessfully_alert', 'Producto actualizado exitosamente.');
             redirect('admin_panel/products');
+        }
+    }
+
+    private function _delete_actual_image($id)
+    {
+        $image = $this->admin_product_model->get_actual_product_image($id);
+        $image = './uploads/' . $image;
+
+        if (file_exists($image)) {
+            unlink($image);
         }
     }
 
