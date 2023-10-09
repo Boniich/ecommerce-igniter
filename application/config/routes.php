@@ -52,7 +52,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $route['default_controller'] = 'admin_login';
 
 $route['admin_panel/products'] = 'admin_product_panel/index';
+$route['show_product_data/(:num)'] = 'admin_product_panel/show_product_data/$1';
 $route['delete_product/(:num)'] = 'admin_product_panel/delete_product/$1';
+$route['update_product/(:num)'] = 'admin_product_panel/update_product/$1';
 
 $route['admin_panel/clients'] = 'admin_panel_client/index';
 $route['delete_client/(:num)'] = 'admin_panel_client/delete_client/$1';
