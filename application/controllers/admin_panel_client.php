@@ -23,6 +23,7 @@ class Admin_panel_client extends CI_Controller
         $this->load->view('admin_panel/clients/show_clients_table');
         $this->load->view('admin_panel/clients/modals/delete_client_modal');
         $this->load->view($this->_path_view_folder . '/modals/create_client_modal');
+        $this->load->view($this->_path_view_folder . '/modals/update_client_modal');
     }
 
     public function create_client()
@@ -44,6 +45,12 @@ class Admin_panel_client extends CI_Controller
         $this->admin_client_model->create_client($client);
         $this->session->set_flashdata('sucessfully_alert', 'Cliente creado exitosamente.');
         redirect('admin_panel/clients');
+    }
+
+    public function get_client_data($id)
+    {
+        $client = $this->admin_client_model->get_one_client($id);
+        echo json_encode($client);
     }
 
     public function delete_client($id)
