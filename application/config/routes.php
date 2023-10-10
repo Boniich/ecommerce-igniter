@@ -58,6 +58,7 @@ $route['update_product/(:num)'] = 'admin_product_panel/update_product/$1';
 
 $route['admin_panel/clients'] = 'admin_panel_client/index';
 $route['delete_client/(:num)'] = 'admin_panel_client/delete_client/$1';
+$route['get_client_data/(:num)'] = 'admin_panel_client/get_client_data/$1';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

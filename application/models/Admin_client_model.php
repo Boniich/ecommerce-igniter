@@ -23,6 +23,20 @@ class Admin_client_model extends CI_Model
         $this->db->insert($this->_table, $data);
     }
 
+    public function update_client($id, $data)
+    {
+        $this->db->where('id', $id);
+        $result = $this->db->update($this->_table, $data);
+
+        return $result;
+    }
+
+    public function get_one_client($id)
+    {
+        $query = $this->db->where('id', $id)->get($this->_table);
+        return $query->result_array();
+    }
+
     public function delete_client($id)
     {
         $this->db->where('id', $id);
