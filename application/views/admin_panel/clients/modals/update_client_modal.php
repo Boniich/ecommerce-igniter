@@ -29,7 +29,7 @@
                     <input type="file" name="profile_image" class="form-control" id="updateClientProfileImage">
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" name="submit" class="btn btn-success">Create</button>
+                    <button type="submit" name="submit" class="btn btn-success">Update</button>
                     <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
                 <?php echo form_close(); ?>
