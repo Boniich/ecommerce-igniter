@@ -16,4 +16,10 @@ class Client_product_model extends CI_Model
 
         return $result;
     }
+
+    public function get_one_product($id)
+    {
+        $query = $this->db->where('id', $id)->get($this->_table);
+        return $query->result_array();
+    }
 }
