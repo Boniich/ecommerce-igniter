@@ -47,6 +47,40 @@ class Admin_panel_client extends CI_Controller
         redirect('admin_panel/clients');
     }
 
+    public function update_client()
+    {
+        $id = $this->input->post('id');
+        $full_name = $this->input->post('full_name');
+        $email = $this->input->post('email');
+        $dni = $this->input->post('dni');
+        $password = $this->input->post('password');
+
+        if (empty($_FILES['profile_image']['name'])) {
+            $productData = array(
+                'full_name' => $full_name,
+                'email' => $email,
+                'dni' => $dni,
+                'password' => $password,
+            );
+        } else {
+            $this->_delete_actual_image($id);
+            $image = $this->_do_upload();
+            $productData = array(
+                'full_name' => $full_name,
+                'email' => $email,
+                'dni' => $dni,
+                'password' => $password,
+                'image' => $image,
+            );
+        }
+
+
+        if ($this->admin_client_model->update_client($id, $productData)) {
+            $this->session->set_flashdata('sucessfully_alert', 'Cliente actualizado exitosamente.');
+            redirect('admin_panel/clients');
+        }
+    }
+
     public function get_client_data($id)
     {
         $client = $this->admin_client_model->get_one_client($id);
@@ -58,6 +92,16 @@ class Admin_panel_client extends CI_Controller
         $this->admin_client_model->delete_client($id);
         $this->session->set_flashdata('sucessfully_alert', 'Cliente eliminado exitosamente.');
         redirect('admin_panel/clients');
+    }
+
+    private function _delete_actual_image($id)
+    {
+        $image = $this->admin_client_model->get_actual_client_image($id);
+        $image = './uploads/' . $image;
+
+        if (file_exists($image)) {
+            unlink($image);
+        }
     }
 
     private function _do_upload()
