@@ -57,6 +57,9 @@ $route['do_login_admin'] = 'admin_panel/login/admin_login/do_login';
 $route['login_client'] = 'clients/auth/client_login';
 $route['do_login_client'] = 'clients/auth/client_login/do_login';
 
+$route['client_register'] = 'clients/auth/client_register';
+$route['do_client_register'] = 'clients/auth/client_register/do_client_register';
+
 
 $route['products'] = 'client_product/index';
 $route['product/(:num)'] = 'client_product/get_product_details/$1';
