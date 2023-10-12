@@ -49,7 +49,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = '';
+$route['default_controller'] = 'clients/client_product/index';
 
 $route['admin_login'] = 'admin_panel/login/admin_login';
 $route['do_admin_login'] = 'admin_panel/login/admin_login/do_login';
@@ -60,14 +60,13 @@ $route['do_client_login'] = 'clients/auth/client_login/do_login';
 $route['client_register'] = 'clients/auth/client_register';
 $route['do_client_register'] = 'clients/auth/client_register/do_client_register';
 
+$route['product/(:num)'] = 'clients/client_product/get_product_details/$1';
 
-$route['products'] = 'client_product/index';
-$route['product/(:num)'] = 'client_product/get_product_details/$1';
-
-$route['admin_panel/products'] = 'admin_product_panel/index';
-$route['show_product_data/(:num)'] = 'admin_product_panel/show_product_data/$1';
-$route['delete_product/(:num)'] = 'admin_product_panel/delete_product/$1';
-$route['update_product/(:num)'] = 'admin_product_panel/update_product/$1';
+$route['admin_panel/products'] = 'admin_panel/admin_product_panel/index';
+$route['show_product_data/(:num)'] = 'admin_panel/admin_product_panel/show_product_data/$1';
+$route['create_product'] = 'admin_panel/admin_product_panel/create_product';
+$route['update_product/(:num)'] = 'admin_panel/admin_product_panel/update_product/$1';
+$route['delete_product/(:num)'] = 'admin_panel/admin_product_panel/delete_product/$1';
 
 $route['admin_panel/clients'] = 'admin_panel_client/index';
 $route['delete_client/(:num)'] = 'admin_panel_client/delete_client/$1';
