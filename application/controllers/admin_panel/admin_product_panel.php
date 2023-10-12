@@ -12,6 +12,10 @@ class Admin_product_panel extends CI_Controller
         $this->load->helper('url_helper');
         $this->load->model('admin_panel/products/admin_product_model');
         $this->load->library('session');
+
+        if ((!$this->session->login_in) || ($this->session->role != 'admin')) {
+            redirect('admin_login');
+        }
     }
 
     public function index()

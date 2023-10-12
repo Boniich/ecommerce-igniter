@@ -11,6 +11,10 @@ class Admin_panel_client extends CI_Controller
         $this->load->helper('url_helper');
         $this->load->model('admin_panel/clients/admin_client_model');
         $this->load->library('session');
+
+        if ((!$this->session->login_in) || ($this->session->role != 'admin')) {
+            redirect('admin_login');
+        }
     }
 
     public function index()
