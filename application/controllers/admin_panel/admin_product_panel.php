@@ -10,7 +10,7 @@ class Admin_product_panel extends CI_Controller
         parent::__construct();
         $this->load->helper('form');
         $this->load->helper('url_helper');
-        $this->load->model('admin_product_model');
+        $this->load->model('admin_panel/products/admin_product_model');
         $this->load->library('session');
     }
 
