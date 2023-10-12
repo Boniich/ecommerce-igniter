@@ -9,7 +9,7 @@ class Admin_panel_client extends CI_Controller
         parent::__construct();
         $this->load->helper('form');
         $this->load->helper('url_helper');
-        $this->load->model('admin_client_model');
+        $this->load->model('admin_panel/clients/admin_client_model');
         $this->load->library('session');
     }
 

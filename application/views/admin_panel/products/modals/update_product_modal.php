@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <?php echo form_open_multipart('admin_product_panel/update_product'); ?>
+                <?php echo form_open_multipart('admin_panel/admin_product_panel/update_product'); ?>
                 <input type="hidden" name="id" id="idUpdateProduct" required>
                 <div class="col">
                     <label for="productName" class="form-label">Name</label>

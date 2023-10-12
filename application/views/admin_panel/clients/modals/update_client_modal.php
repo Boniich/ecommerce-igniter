@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <?php echo form_open_multipart('admin_panel_client/update_client'); ?>
+                <?php echo form_open_multipart('admin_panel/admin_panel_client/update_client'); ?>
                 <input type="hidden" name="id" id="idUpdateClient" required>
                 <div class="col">
                     <label for="updateClientName" class="form-label">Full name</label>
