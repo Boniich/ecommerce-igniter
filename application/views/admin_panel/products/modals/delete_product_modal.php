@@ -22,7 +22,7 @@
     modal.addEventListener('show.bs.modal', function(event) {
         var button = event.relatedTarget
         let id = button.getAttribute('data-id');
-        let newURL = '<?php echo site_url('admin_product_panel/delete_product/'); ?>' + id;
+        let newURL = '<?php echo site_url('delete_product/'); ?>' + id;
         console.log(newURL);
         deleteProduct.setAttribute('href', newURL);
 
