@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <?php echo form_open_multipart('admin_panel_client/create_client'); ?>
+                <?php echo form_open_multipart('create_client'); ?>
                 <div class="col">
                     <label for="inputEmail4" class="form-label">Full name</label>
                     <input type="text" name="full_name" class="form-control" id="inputEmail4" required>
