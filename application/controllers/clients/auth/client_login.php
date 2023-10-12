@@ -8,6 +8,13 @@ class Client_login extends CI_Controller
         $this->load->helper('form');
         $this->load->helper('url_helper');
         $this->load->model('clients/auth/client_login_model');
+        $this->load->library('session');
+
+        if ($this->session->login_in && $this->session->role === 'admin') {
+            redirect('admin_panel/products');
+        } else if ($this->session->login_in && $this->session->role === 'client') {
+            redirect('products');
+        }
     }
 
     public function index()
