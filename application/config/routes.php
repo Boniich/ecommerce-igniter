@@ -51,11 +51,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 */
 $route['default_controller'] = '';
 
-$route['login_admin'] = 'admin_panel/login/admin_login';
-$route['do_login_admin'] = 'admin_panel/login/admin_login/do_login';
+$route['admin_login'] = 'admin_panel/login/admin_login';
+$route['do_admin_login'] = 'admin_panel/login/admin_login/do_login';
 
-$route['login_client'] = 'clients/auth/client_login';
-$route['do_login_client'] = 'clients/auth/client_login/do_login';
+$route['client_login'] = 'clients/auth/client_login';
+$route['do_client_login'] = 'clients/auth/client_login/do_login';
 
 $route['client_register'] = 'clients/auth/client_register';
 $route['do_client_register'] = 'clients/auth/client_register/do_client_register';

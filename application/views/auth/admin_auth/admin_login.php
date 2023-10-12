@@ -10,7 +10,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <h1 class="my-5">Admin Login</h1>
 
         <div class="w-50 bg-light shadow p-3 mb-5 bg-body rounded border border-secondary rounded-3">
-            <?php echo form_open('do_login_admin'); ?>
+            <?php echo form_open('do_admin_login'); ?>
             <div class="col">
                 <label for="inputEmail4" class="form-label">Email</label>
                 <input type="email" name="email" class="form-control" id="inputEmail4">
