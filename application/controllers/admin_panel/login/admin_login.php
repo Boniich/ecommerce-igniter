@@ -19,7 +19,7 @@ class Admin_login extends CI_Controller
     {
         $data['title'] = 'Admin Login';
         $this->load->view('head/head', $data);
-        $this->load->view('navs/auth_nav/auth_nav');
+        $this->load->view('navs/unauthenticated_nav/unauthenticated_nav');
         $this->load->view('auth/admin_auth/admin_login');
     }
 
@@ -36,7 +36,7 @@ class Admin_login extends CI_Controller
             $data['error_message'] = 'Invalid username or password';
             $data['title'] = 'Admin Login';
             $this->load->view('head/head', $data);
-            $this->load->view('navs/auth_nav/auth_nav');
+            $this->load->view('navs/unauthenticated_nav/unauthenticated_nav');
             $this->load->view('auth/admin_auth/admin_login', $data);
         }
     }

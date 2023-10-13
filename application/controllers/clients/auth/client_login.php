@@ -21,7 +21,7 @@ class Client_login extends CI_Controller
     {
         $data['title'] = 'Client Login';
         $this->load->view('head/head', $data);
-        $this->load->view('navs/auth_nav/auth_nav');
+        $this->load->view('navs/unauthenticated_nav/unauthenticated_nav');
         $this->load->view('auth/client_auth/client_login');
     }
 
@@ -37,7 +37,7 @@ class Client_login extends CI_Controller
             $data['error_message'] = 'Invalid username or password';
             $data['title'] = 'Client Login';
             $this->load->view('head/head', $data);
-            $this->load->view('navs/auth_nav/auth_nav');
+            $this->load->view('navs/unauthenticated_nav/unauthenticated_nav');
             $this->load->view('auth/client_auth/client_login');
         }
     }
