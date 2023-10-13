@@ -13,8 +13,10 @@ class Admin_product_panel extends CI_Controller
         $this->load->model('admin_panel/products/admin_product_model');
         $this->load->library('session');
 
-        if ((!$this->session->login_in) || ($this->session->role != 'admin')) {
+        if (!$this->session->login_in) {
             redirect('admin_login');
+        } else if ($this->session->login_in && $this->session->role != 'admin') {
+            redirect('products');
         }
     }
 
