@@ -18,7 +18,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <p><?php echo $item['description'] ?></p>
                 <p>Cantidad disponible: <?php echo $item['stock'] ?></p>
                 <p>$<?php echo $item['price'] ?></p>
-                <button>Agregar al carrito</button>
+                <?php if (!$this->session->login_in) : ?>
+                    <p>Debes Iniciar session para comprar</p>
+                <?php elseif ($this->session->login_in && $this->session->role === 'client') : ?>
+                    <button>Agregar al carrito</button>
+                <?php elseif ($this->session->login_in && $this->session->role === 'admin') : ?>
+                    <p>Lo sentimos. Los administradores NO PUEDEN COMPRAR</p>
+                <?php endif ?>
             </div>
         <?php endforeach; ?>
     </div>
