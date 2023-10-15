@@ -4,6 +4,9 @@
             <p class="m-0 text-light">Ecommerce Igniter 🔥</p>
             <ul class="nav">
                 <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="<?php echo base_url('/'); ?>">Home</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="<?php echo base_url('products'); ?>">Products</a>
                 </li>
             </ul>
