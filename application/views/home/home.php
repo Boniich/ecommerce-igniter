@@ -53,14 +53,48 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <div class="text-center my-5">
             <h2>Algunos de nuestros productos</h2>
         </div>
-        <div class="card" style="width: 18rem;">
-            <img src="./assets/not-image.png" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <a href="#" class="btn btn-primary">Ver producto</a>
-            </div>
+        <div class="d-flex gap-5">
+            <?php foreach ($products as $product) : ?>
+                <div class="card" style="width: 18rem;">
+                    <?php if ($product['image'] == NULL || $product['image'] == '') {
+                        $image = './assets/not-image.png';
+                    } else {
+                        $image = './uploads/' . $product['image'];
+                    } ?>
+                    <img src="<?php echo base_url($image); ?>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $product['name'] ?></h5>
+                        <p>$<?php echo $product['price'] ?></p>
+                        <a href="<?php echo base_url("product/{$product['id']}"); ?>" class="btn btn-primary">Ver producto</a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
         <!-- end of products -->
+        <div class="text-center my-5">
+            <h3>Las mejores marcas para vos</h3>
+        </div>
+
+        <div class="d-flex gap-5">
+            <div class="card border-info mb-3" style="max-width: 18rem;">
+                <div class="">
+                    <img src="./assets/intel-2.jpg" class="card-img-top" height="150" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-center">Intel</h5>
+                </div>
+            </div>
+
+            <div class="card border-info mb-3" style="max-width: 18rem;">
+                <div class="">
+                    <img src="./assets/intel-2.jpg" class="card-img-top" height="150" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-center">AMD</h5>
+                </div>
+            </div>
+        </div>
+
 </body>
 
 </html>
