@@ -50,6 +50,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
             </div>
         </div>
         <!-- end of slide -->
+        <div class="text-center my-5">
+            <h2>Algunos de nuestros productos</h2>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <img src="./assets/not-image.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <a href="#" class="btn btn-primary">Ver producto</a>
+            </div>
+        </div>
+        <!-- end of products -->
 </body>
 
 </html>
