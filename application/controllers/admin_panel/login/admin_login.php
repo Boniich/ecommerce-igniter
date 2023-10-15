@@ -9,14 +9,12 @@ class Admin_login extends CI_Controller
         $this->load->helper('url_helper');
         $this->load->model('admin_panel/auth/admin_login_model');
         $this->load->library('session');
-
-        if ($this->session->login_in) {
-            redirect('admin_panel/products');
-        }
     }
 
     public function index()
     {
+        $this->_check_auth();
+
         $data['title'] = 'Admin Login';
         $this->load->view('head/head', $data);
         $this->load->view('navs/unauthenticated_nav/unauthenticated_nav');
@@ -25,6 +23,8 @@ class Admin_login extends CI_Controller
 
     public function do_login()
     {
+        $this->_check_auth();
+
         $email = $this->input->post('email');
         $password = $this->input->post('password');
 
@@ -45,5 +45,22 @@ class Admin_login extends CI_Controller
     {
         $auth_data = array('id' => $id, 'login_in' => true, 'role' => 'admin');
         $this->session->set_userdata($auth_data);
+    }
+
+    public function logout()
+    {
+        if ($this->session->login_in && $this->session->role === 'admin') {
+            session_destroy();
+            redirect('admin_login');
+        } else {
+            redirect('products');
+        }
+    }
+
+    private function _check_auth()
+    {
+        if ($this->session->login_in) {
+            redirect('admin_panel/products');
+        }
     }
 }

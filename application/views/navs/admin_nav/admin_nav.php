@@ -31,7 +31,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li><a class="dropdown-item" href="#">Ajustes</a></li>
-                        <li><a class="dropdown-item" href="<?php echo base_url('logout_admin'); ?>">Salir</a></li>
+                        <li><a class="dropdown-item" href="<?php echo base_url('admin_logout'); ?>">Salir</a></li>
                     </ul>
                 </div>
 
