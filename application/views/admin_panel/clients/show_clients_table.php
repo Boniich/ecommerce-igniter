@@ -26,7 +26,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <td><?php echo $client['full_name']; ?> </td>
                     <td><?php echo $client['email']; ?> </td>
                     <td><?php echo $client['dni']; ?></td>
-                    <td><a href="">Details</a></td>
+                    <td><a href="<?php echo base_url('admin_panel/client/') . $client['id']; ?>">Details</a></td>
                     <td><a href="#" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateClientModal" data-id="<?php echo $client['id']; ?>">
                             update
                         </a></td>
