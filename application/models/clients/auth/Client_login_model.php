@@ -11,7 +11,7 @@ class Client_login_model extends CI_Model
     }
 
 
-    private function validate_client_data($email, $password)
+    private function _validate_client_data($email, $password)
     {
         $this->db->where('email', $email);
         $this->db->where('password', $password);
@@ -22,21 +22,21 @@ class Client_login_model extends CI_Model
 
     public function login($email, $password)
     {
-        $query = $this->validate_client_data($email, $password);
+        $query = $this->_validate_client_data($email, $password);
         $is_client = $query->num_rows() == 1 ?? true ?? false;
         if ($is_client) {
-            $this->set_client_id($query);
+            $this->_set_client_id($query);
         }
         return $is_client;
     }
 
-    private function set_client_id($query)
+    private function _set_client_id($query)
     {
         $client = $query->row();
         $this->_client_id = $client->id;
     }
 
-    public function get_client_id()
+    public function _get_client_id()
     {
         return $this->_client_id;
     }
