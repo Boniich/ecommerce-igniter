@@ -9,16 +9,12 @@ class Client_login extends CI_Controller
         $this->load->helper('url_helper');
         $this->load->model('clients/auth/client_login_model');
         $this->load->library('session');
-
-        if ($this->session->login_in && $this->session->role === 'admin') {
-            redirect('admin_panel/products');
-        } else if ($this->session->login_in && $this->session->role === 'client') {
-            redirect('products');
-        }
     }
 
     public function index()
     {
+        $this->_check_auth();
+
         $data['title'] = 'Client Login';
         $this->load->view('head/head', $data);
         $this->load->view('navs/unauthenticated_nav/unauthenticated_nav');
@@ -27,6 +23,9 @@ class Client_login extends CI_Controller
 
     public function do_login()
     {
+
+        $this->_check_auth();
+
         $email = $this->input->post('email');
         $password = $this->input->post('password');
 
@@ -42,10 +41,32 @@ class Client_login extends CI_Controller
         }
     }
 
+    public function logout()
+    {
+        if ($this->session->login_in && $this->session->role === 'client') {
+            session_destroy();
+            redirect('client_login');
+        } else {
+            redirect('products');
+        }
+    }
+
     private function _set_auth_data()
     {
         $id = $this->client_login_model->get_client_id();
         $auth_data = array('id' => $id, 'login_in' => true, 'role' => 'client');
         $this->session->set_userdata($auth_data);
+    }
+
+    private function _check_auth()
+    {
+        $login_in = $this->session->login_in;
+        $role = $this->session->role;
+
+        if ($login_in && $role  === 'admin') {
+            redirect('admin_panel/products');
+        } else if ($login_in && $role == 'client') {
+            redirect('products');
+        }
     }
 }
