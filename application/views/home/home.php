@@ -87,10 +87,28 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
             <div class="card border-info mb-3" style="max-width: 18rem;">
                 <div class="">
-                    <img src="./assets/intel-2.jpg" class="card-img-top" height="150" alt="...">
+                    <img src="./assets/amd.jpg" class="card-img-top" height="150" alt="...">
                 </div>
                 <div class="card-body">
                     <h5 class="card-title text-center">AMD</h5>
+                </div>
+            </div>
+
+            <div class="card border-info mb-3" style="max-width: 18rem;">
+                <div class="">
+                    <img src="./assets/msi.jpg" class="card-img-top" height="150" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-center">MSI</h5>
+                </div>
+            </div>
+
+            <div class="card border-info mb-3" style="max-width: 18rem;">
+                <div class="">
+                    <img src="./assets/hyperx-2.png" class="card-img-top" height="150" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-center">Hyperx</h5>
                 </div>
             </div>
         </div>
