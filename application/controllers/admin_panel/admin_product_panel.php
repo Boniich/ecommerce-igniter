@@ -49,6 +49,18 @@ class Admin_product_panel extends CI_Controller
         echo json_encode($product);
     }
 
+    public function get_product_details($id)
+    {
+        $data['product'] = $this->admin_product_model->get_one_product($id);
+        $data['title'] = $data['product'][0]['name'];
+        $data['admin'] = $this->_get_admin_data();
+        $data['id'] = $id;
+        $this->load->view('head/head', $data);
+        $this->load->view('navs/admin_nav/admin_nav');
+        $this->load->view('admin_panel/products/product_details/show_product_index');
+        $this->load->view('admin_panel/products/product_details/show_product_details');
+    }
+
     public function create_product()
     {
         $name = $this->input->post('name');
