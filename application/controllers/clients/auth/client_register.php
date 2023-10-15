@@ -2,12 +2,15 @@
 
 class Client_register extends CI_Controller
 {
+    private array $userData;
+
     public function __construct()
     {
         parent::__construct();
         $this->load->helper('form');
         $this->load->helper('url_helper');
         $this->load->model('clients/auth/client_register_model');
+        $this->load->model('clients/auth/client_login_model');
         $this->load->library('session');
 
         if ($this->session->login_in && $this->session->role === 'admin') {
@@ -31,7 +34,10 @@ class Client_register extends CI_Controller
 
         if ($is_data_valid) {
             if ($this->client_register_model->register($this->userData)) {
-                redirect('products');
+                if ($this->client_login_model->login($this->userData['email'], $this->userData['password'])) {
+                    $this->_set_auth_data();
+                    redirect('products');
+                }
             }
         }
     }
@@ -83,5 +89,12 @@ class Client_register extends CI_Controller
         $this->load->view('navs/unauthenticated_nav/unauthenticated_nav');
         $this->load->view('auth/client_auth/client_register', $data);
         return false;
+    }
+
+    private function _set_auth_data()
+    {
+        $id = $this->client_login_model->_get_client_id();
+        $auth_data = array('id' => $id, 'login_in' => true, 'role' => 'client');
+        $this->session->set_userdata($auth_data);
     }
 }
