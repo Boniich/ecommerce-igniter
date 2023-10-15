@@ -16,7 +16,7 @@ class Home extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Products';
+        $data['title'] = 'Home - Ecommerce Igniter';
         $data['products'] = $this->home_product_model->get_products_home();
         $this->load->view('head/head', $data);
         $this->_get_nav();
