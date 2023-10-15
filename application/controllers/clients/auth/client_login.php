@@ -53,7 +53,7 @@ class Client_login extends CI_Controller
 
     private function _set_auth_data()
     {
-        $id = $this->client_login_model->get_client_id();
+        $id = $this->client_login_model->_get_client_id();
         $auth_data = array('id' => $id, 'login_in' => true, 'role' => 'client');
         $this->session->set_userdata($auth_data);
     }

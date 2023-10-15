@@ -2,8 +2,6 @@
 
 class Client_register extends CI_Controller
 {
-    private array $userData;
-
     public function __construct()
     {
         parent::__construct();
