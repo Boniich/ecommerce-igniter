@@ -74,6 +74,7 @@ $route['delete_product/(:num)'] = 'admin_panel/admin_product_panel/delete_produc
 
 $route['admin_panel/clients'] = 'admin_panel/admin_panel_client/index';
 $route['get_client_data/(:num)'] = 'admin_panel/admin_panel_client/get_client_data/$1';
+$route['admin_panel/client/(:num)'] = 'admin_panel/admin_panel_client/get_client_details/$1';
 $route['create_client'] = 'admin_panel/admin_panel_client/create_client';
 $route['update_client'] = 'admin_panel/admin_panel_client/update_client/$1';
 $route['delete_client/(:num)'] = 'admin_panel/admin_panel_client/delete_client/$1';

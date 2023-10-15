@@ -96,6 +96,18 @@ class Admin_panel_client extends CI_Controller
         echo json_encode($client);
     }
 
+    public function get_client_details($id)
+    {
+        $data['client'] = $this->admin_client_model->get_one_client($id);
+        $data['title'] = 'Client: ' . $data['client'][0]['full_name'];
+        $data['admin'] = $this->_get_admin_data();
+        $data['id'] = $id;
+        $this->load->view('head/head', $data);
+        $this->load->view('navs/admin_nav/admin_nav');
+        $this->load->view('admin_panel/clients/client_details/show_client_index');
+        $this->load->view('admin_panel/clients/client_details/show_client_details');
+    }
+
     public function delete_client($id)
     {
         $this->admin_client_model->delete_client($id);
