@@ -10,6 +10,7 @@ class Admin_panel_client extends CI_Controller
         $this->load->helper('form');
         $this->load->helper('url_helper');
         $this->load->model('admin_panel/clients/admin_client_model');
+        $this->load->model('admin_panel/admin_data_model');
         $this->load->library('session');
 
         if (!$this->session->login_in) {
@@ -23,7 +24,9 @@ class Admin_panel_client extends CI_Controller
     {
         $data['title'] = 'Admin Panel - Clients';
         $data['clients'] = $this->admin_client_model->get_all_clients();
+        $data['admin'] = $this->_get_admin_data();
         $this->load->view('head/head', $data);
+        $this->load->view('navs/admin_nav/admin_nav');
         $this->load->view('admin_panel/clients/admin_clients_index');
         $this->load->view('feedback/successfully_alert');
         $this->load->view('admin_panel/clients/show_clients_table');
@@ -124,5 +127,12 @@ class Admin_panel_client extends CI_Controller
             $image = 'clients/' . $this->upload->data('file_name');
             return $image;
         }
+    }
+
+    private function _get_admin_data()
+    {
+        $id = $this->session->id;
+        $data = $this->admin_data_model->get_admin($id);
+        return $data;
     }
 }

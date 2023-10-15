@@ -10,6 +10,7 @@ class Client_product extends CI_Controller
         $this->load->helper('url_helper');
         $this->load->model('clients/client_product_model');
         $this->load->model('clients/client_data_model');
+        $this->load->model('admin_panel/admin_data_model');
         $this->load->library('session');
     }
 
@@ -39,6 +40,13 @@ class Client_product extends CI_Controller
         return $data;
     }
 
+    private function _get_admin_data()
+    {
+        $id = $this->session->id;
+        $data = $this->admin_data_model->get_admin($id);
+        return $data;
+    }
+
     private function _get_nav()
     {
 
@@ -51,8 +59,9 @@ class Client_product extends CI_Controller
             $this->load->view('navs/client_nav/client_nav', $data);
         }
 
-        if ($this->session->role === "Admin") {
-            //nav para admin
+        if ($this->session->role === "admin") {
+            $data['admin'] = $this->_get_admin_data();
+            $this->load->view('navs/admin_nav/admin_nav', $data);
         }
     }
 }
