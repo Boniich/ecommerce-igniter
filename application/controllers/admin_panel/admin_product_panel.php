@@ -11,14 +11,23 @@ class Admin_product_panel extends CI_Controller
         $this->load->helper('form');
         $this->load->helper('url_helper');
         $this->load->model('admin_panel/products/admin_product_model');
+        $this->load->model('admin_panel/admin_data_model');
         $this->load->library('session');
+
+        if (!$this->session->login_in) {
+            redirect('admin_login');
+        } else if ($this->session->login_in && $this->session->role != 'admin') {
+            redirect('products');
+        }
     }
 
     public function index()
     {
         $data['title'] = 'Admin Panel - Products';
         $data['products'] = $this->admin_product_model->get_all_products();
+        $data['admin'] = $this->_get_admin_data();
         $this->load->view('head/head', $data);
+        $this->load->view('navs/admin_nav/admin_nav');
         $this->load->view('admin_panel/products/admin_products_index');
         $this->load->view('feedback/successfully_alert');
         $this->load->view('admin_panel/products/show_products_table');
@@ -119,5 +128,12 @@ class Admin_product_panel extends CI_Controller
             $image = 'products/' . $this->upload->data('file_name');
             return $image;
         }
+    }
+
+    private function _get_admin_data()
+    {
+        $id = $this->session->id;
+        $data = $this->admin_data_model->get_admin($id);
+        return $data;
     }
 }

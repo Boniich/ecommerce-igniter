@@ -10,13 +10,20 @@ class Client_register extends CI_Controller
         $this->load->helper('form');
         $this->load->helper('url_helper');
         $this->load->model('clients/auth/client_register_model');
+        $this->load->library('session');
+
+        if ($this->session->login_in && $this->session->role === 'admin') {
+            redirect('admin_panel/products');
+        } else if ($this->session->login_in && $this->session->role === 'client') {
+            redirect('products');
+        }
     }
 
     public function index()
     {
         $data['title'] = 'Client Login';
         $this->load->view('head/head', $data);
-        $this->load->view('navs/auth_nav/auth_nav');
+        $this->load->view('navs/unauthenticated_nav/unauthenticated_nav');
         $this->load->view('auth/client_auth/client_register');
     }
 
@@ -55,7 +62,7 @@ class Client_register extends CI_Controller
         $data['error_message'] = 'One or more Required field are empty!';
         $data['title'] = 'Registro de clientes';
         $this->load->view('head/head', $data);
-        $this->load->view('navs/auth_nav/auth_nav');
+        $this->load->view('navs/unauthenticated_nav/unauthenticated_nav');
         $this->load->view('auth/client_auth/client_register', $data);
         return false;
     }
@@ -65,7 +72,7 @@ class Client_register extends CI_Controller
         $data['error_message'] = 'Este email ya esta registrado! Intenta con otro!';
         $data['title'] = 'Registro de clientes';
         $this->load->view('head/head', $data);
-        $this->load->view('navs/auth_nav/auth_nav');
+        $this->load->view('navs/unauthenticated_nav/unauthenticated_nav');
         $this->load->view('auth/client_auth/client_register', $data);
         return false;
     }
@@ -75,7 +82,7 @@ class Client_register extends CI_Controller
         $data['error_message'] = 'Este DNI ya esta registrado';
         $data['title'] = 'Registro de clientes';
         $this->load->view('head/head', $data);
-        $this->load->view('navs/auth_nav/auth_nav');
+        $this->load->view('navs/unauthenticated_nav/unauthenticated_nav');
         $this->load->view('auth/client_auth/client_register', $data);
         return false;
     }
