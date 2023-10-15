@@ -8,6 +8,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <div class="d-flex">
                 <ul class="nav">
                     <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="<?php echo base_url('/'); ?>">Home</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="<?php echo base_url('products'); ?>">Products</a>
                     </li>
                 </ul>
