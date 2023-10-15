@@ -26,7 +26,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <td><?php echo $product['name']; ?> </td>
                     <td><?php echo $product['stock']; ?> </td>
                     <td>$<?php echo $product['price']; ?></td>
-                    <td><a href="">Details</a></td>
+
+                    <td><a href="<?php echo base_url('admin_panel/product/') . $product['id']; ?>">Details</a></td>
                     <td><a href="#" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateProductModal" data-id="<?php echo $product['id']; ?>">
                             update
                         </a></td>
