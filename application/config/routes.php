@@ -55,6 +55,7 @@ $route['admin_login'] = 'admin_panel/login/admin_login';
 $route['do_admin_login'] = 'admin_panel/login/admin_login/do_login';
 
 $route['client_login'] = 'clients/auth/client_login';
+$route['logout_client'] = 'clients/auth/client_login/logout';
 $route['do_client_login'] = 'clients/auth/client_login/do_login';
 
 $route['client_register'] = 'clients/auth/client_register';
