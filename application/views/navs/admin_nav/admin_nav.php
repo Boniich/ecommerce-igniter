@@ -25,7 +25,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <div class="dropdown">
                     <button class="d-flex justify-content-center align-items-center gap-2 btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         <?php foreach ($admin as $data) : ?>
-                            <img src="<?php echo base_url('./assets/image-profile.png'); ?>" class="rounded-circle" width="35" height="35"></img>
+                            <?php if ($data['image'] == NULL || $data['image'] == '') {
+                                $image = './assets/image-profile.png';
+                            } else {
+                                $image = './uploads/' . $data['image'];
+                            } ?>
+                            <img src="<?php echo base_url($image); ?>" class="rounded-circle" width="35" height="35"></img>
                             <p class="m-0"><?php echo $data['full_name']; ?></p>
                         <?php endforeach; ?>
                     </button>
