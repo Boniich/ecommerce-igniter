@@ -42,4 +42,16 @@ class Admin_client_model extends CI_Model
         $this->db->where('id', $id);
         $this->db->delete($this->_table);
     }
+
+    public function get_actual_client_image($id)
+    {
+        $this->db->where('id', $id);
+        $query = $this->db->get($this->_table);
+
+        $row = $query->row();
+
+        $image = $row->image;
+
+        return $image;
+    }
 }
