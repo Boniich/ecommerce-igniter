@@ -131,8 +131,8 @@ class Admin_product_panel extends CI_Controller
         $config['upload_path'] = './uploads/products';
         $config['allowed_types'] = 'jpg|png';
         $config['max_size'] = 200;
-        $config['max_width'] = 500;
-        $config['max_height'] = 400;
+        $config['max_width'] = 1000;
+        $config['max_height'] = 1000;
 
         $this->load->library('upload', $config);
 
