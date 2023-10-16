@@ -18,25 +18,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="./assets/image-profile.png" class="d-block w-100" height="300" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>First slide label</h5>
-                            <p>Some representative placeholder content for the first slide.</p>
-                        </div>
+                        <img src="./assets/slides/130.png" class="d-block w-100" height="300" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="./assets/image-profile.png" class="d-block w-100" height="300" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Second slide label</h5>
-                            <p>Some representative placeholder content for the second slide.</p>
-                        </div>
+                        <img src="./assets/slides/74.png" class="d-block w-100" height="300" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="./assets/image-profile.png" class="d-block w-100" height="300" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Third slide label</h5>
-                            <p>Some representative placeholder content for the third slide.</p>
-                        </div>
+                        <img src="./assets/slides/117.png" class="d-block w-100" height="300" alt="...">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
