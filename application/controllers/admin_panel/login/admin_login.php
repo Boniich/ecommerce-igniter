@@ -33,8 +33,8 @@ class Admin_login extends CI_Controller
             $this->_set_auth_data($id);
             redirect('admin_panel/products');
         } else {
-            $data['error_message'] = 'Invalid username or password';
-            $data['title'] = 'Admin Login';
+            $data['error_message'] = 'Email o contraseña incorrectas!';
+            $data['title'] = 'Login de Administradores';
             $this->load->view('head/head', $data);
             $this->load->view('navs/unauthenticated_nav/unauthenticated_nav');
             $this->load->view('auth/admin_auth/admin_login', $data);
