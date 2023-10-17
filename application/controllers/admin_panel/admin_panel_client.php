@@ -30,6 +30,7 @@ class Admin_panel_client extends CI_Controller
         $this->load->view('navs/modals/exit_modal');
         $this->load->view('admin_panel/clients/admin_clients_index');
         $this->load->view('feedback/successfully_alert');
+        $this->load->view('feedback/error_alert');
         $this->load->view('admin_panel/clients/show_clients_table');
         $this->load->view('admin_panel/clients/modals/delete_client_modal');
         $this->load->view($this->_path_view_folder . '/modals/create_client_modal');
@@ -43,6 +44,11 @@ class Admin_panel_client extends CI_Controller
         $password = $this->input->post('password');
         $dni = $this->input->post('dni');
         $profile_image = $this->_do_upload();
+
+        if ($this->admin_client_model->check_email($email)) {
+            $this->session->set_flashdata('error_alert', 'El email ya esta registrado. Intenta con otro');
+            redirect('admin_panel/clients');
+        }
 
         $client = array(
             'full_name' => $full_name,
