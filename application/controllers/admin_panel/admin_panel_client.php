@@ -50,6 +50,11 @@ class Admin_panel_client extends CI_Controller
             redirect('admin_panel/clients');
         }
 
+        if ($this->admin_client_model->check_dni($dni)) {
+            $this->session->set_flashdata('error_alert', 'El DNI ya esta registrado. Intenta con otro');
+            redirect('admin_panel/clients');
+        }
+
         $client = array(
             'full_name' => $full_name,
             'email' => $email,
