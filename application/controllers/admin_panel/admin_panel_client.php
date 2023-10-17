@@ -45,15 +45,8 @@ class Admin_panel_client extends CI_Controller
         $dni = $this->input->post('dni');
         $profile_image = $this->_do_upload();
 
-        if ($this->admin_client_model->check_email($email)) {
-            $this->session->set_flashdata('error_alert', 'El email ya esta registrado. Intenta con otro');
-            redirect('admin_panel/clients');
-        }
-
-        if ($this->admin_client_model->check_dni($dni)) {
-            $this->session->set_flashdata('error_alert', 'El DNI ya esta registrado. Intenta con otro');
-            redirect('admin_panel/clients');
-        }
+        $this->_check_email($email);
+        $this->_check_dni($dni);
 
         $client = array(
             'full_name' => $full_name,
@@ -159,5 +152,21 @@ class Admin_panel_client extends CI_Controller
         $id = $this->session->id;
         $data = $this->admin_data_model->get_admin($id);
         return $data;
+    }
+
+    private function _check_email($email)
+    {
+        if ($this->admin_client_model->check_email($email)) {
+            $this->session->set_flashdata('error_alert', 'El email ya esta registrado. Intenta con otro');
+            redirect('admin_panel/clients');
+        }
+    }
+
+    private function _check_dni($dni)
+    {
+        if ($this->admin_client_model->check_dni($dni)) {
+            $this->session->set_flashdata('error_alert', 'El DNI ya esta registrado. Intenta con otro');
+            redirect('admin_panel/clients');
+        }
     }
 }
