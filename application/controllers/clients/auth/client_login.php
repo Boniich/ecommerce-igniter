@@ -33,7 +33,7 @@ class Client_login extends CI_Controller
             $this->_set_auth_data();
             redirect('products');
         } else {
-            $data['error_message'] = 'Invalid username or password';
+            $data['error_message'] = 'Email o contraseña incorrectas!';
             $data['title'] = 'Client Login';
             $this->load->view('head/head', $data);
             $this->load->view('navs/unauthenticated_nav/unauthenticated_nav');

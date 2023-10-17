@@ -63,7 +63,7 @@ class Client_register extends CI_Controller
 
     private function _get_fields_empty_error()
     {
-        $data['error_message'] = 'One or more Required field are empty!';
+        $data['error_message'] = 'Uno o mas campos requeridos estan vacios!';
         $data['title'] = 'Registro de clientes';
         $this->load->view('head/head', $data);
         $this->load->view('navs/unauthenticated_nav/unauthenticated_nav');

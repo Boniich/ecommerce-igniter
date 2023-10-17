@@ -32,10 +32,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <button type="submit" name="submit" class="btn btn-success">Registrarse</button>
             </div>
             <?php echo form_close(); ?>
-            <p class="text-danger text-center fs-4 my-0">
-                <?php if (isset($error_message)) {
-                    echo $error_message;
-                } ?></p>
+            <?php if (isset($error_message)) : ?>
+                <div class="alert alert-danger p-2 m-0" role="alert">
+                    <p class="text-center m-0 text-dark fs-5"><?php echo $error_message; ?></p>
+                </div>
+            <?php endif ?>
         </div>
     </div>
 
