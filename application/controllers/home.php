@@ -20,6 +20,7 @@ class Home extends CI_Controller
         $data['products'] = $this->home_product_model->get_products_home();
         $this->load->view('head/head', $data);
         $this->_get_nav();
+        $this->load->view('navs/modals/exit_modal');
         $this->load->view('home/home');
     }
 

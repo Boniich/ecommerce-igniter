@@ -28,6 +28,7 @@ class Admin_product_panel extends CI_Controller
         $data['admin'] = $this->_get_admin_data();
         $this->load->view('head/head', $data);
         $this->load->view('navs/admin_nav/admin_nav');
+        $this->load->view('navs/modals/exit_modal');
         $this->load->view('admin_panel/products/admin_products_index');
         $this->load->view('feedback/successfully_alert');
         $this->load->view('admin_panel/products/show_products_table');
@@ -57,6 +58,7 @@ class Admin_product_panel extends CI_Controller
         $data['id'] = $id;
         $this->load->view('head/head', $data);
         $this->load->view('navs/admin_nav/admin_nav');
+        $this->load->view('navs/modals/exit_modal');
         $this->load->view('admin_panel/products/product_details/show_product_index');
         $this->load->view('admin_panel/products/product_details/show_product_details');
     }

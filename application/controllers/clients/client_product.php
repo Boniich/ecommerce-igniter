@@ -20,6 +20,7 @@ class Client_product extends CI_Controller
         $data['products'] = $this->client_product_model->get_all_products();
         $this->load->view('head/head', $data);
         $this->_get_nav();
+        $this->load->view('navs/modals/exit_modal');
         $this->load->view('clients/show_products_index');
         $this->load->view('clients/show_product_list');
     }
@@ -30,6 +31,7 @@ class Client_product extends CI_Controller
         $data['title'] = $data['product'][0]['name'];
         $this->load->view('head/head', $data);
         $this->_get_nav();
+        $this->load->view('navs/modals/exit_modal');
         $this->load->view('clients/show_product_details');
     }
 

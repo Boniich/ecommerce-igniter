@@ -27,6 +27,7 @@ class Admin_panel_client extends CI_Controller
         $data['admin'] = $this->_get_admin_data();
         $this->load->view('head/head', $data);
         $this->load->view('navs/admin_nav/admin_nav');
+        $this->load->view('navs/modals/exit_modal');
         $this->load->view('admin_panel/clients/admin_clients_index');
         $this->load->view('feedback/successfully_alert');
         $this->load->view('admin_panel/clients/show_clients_table');
@@ -104,6 +105,7 @@ class Admin_panel_client extends CI_Controller
         $data['id'] = $id;
         $this->load->view('head/head', $data);
         $this->load->view('navs/admin_nav/admin_nav');
+        $this->load->view('navs/modals/exit_modal');
         $this->load->view('admin_panel/clients/client_details/show_client_index');
         $this->load->view('admin_panel/clients/client_details/show_client_details');
     }
