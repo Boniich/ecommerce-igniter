@@ -7,6 +7,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <div class="container">
         <div class="text-center my-5">
             <h1>Bienvenido a Ecommerce Igniter 🔥</h1>
+            <h2>Donde encontraras todo para armar tu PC!</h2>
         </div>
 
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
