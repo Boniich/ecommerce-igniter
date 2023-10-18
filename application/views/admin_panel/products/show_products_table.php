@@ -9,13 +9,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Product ID</th>
-                <th scope="col">Name</th>
+                <th scope="col">ID del Producto</th>
+                <th scope="col">Nombre</th>
                 <th scope="col">Stock</th>
-                <th scope="col">Price</th>
-                <th scope="col">Details</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Delete</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Detalles</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
             </tr>
         </thead>
         <tbody>
@@ -27,12 +27,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <td><?php echo $product['stock']; ?> </td>
                     <td>$<?php echo $product['price']; ?></td>
 
-                    <td><a href="<?php echo base_url('admin_panel/product/') . $product['id']; ?>">Details</a></td>
+                    <td><a href="<?php echo base_url('admin_panel/product/') . $product['id']; ?>">Detalles</a></td>
                     <td><a href="#" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateProductModal" data-id="<?php echo $product['id']; ?>">
-                            update
+                            Editar
                         </a></td>
-                    <td><a href="#" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteProductModal" data-id="<?php echo $product['id']; ?>">
-                            Delete
+                    <td><a href="#" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteProductModal" data-id="<?php echo $product['id']; ?>">
+                            Eliminar
                         </a></td>
                 </tr>
             <?php endforeach; ?>

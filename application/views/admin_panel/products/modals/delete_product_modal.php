@@ -2,15 +2,15 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Delete Product</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar Producto</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Are you sure want to delete this product?
+                Estas seguro que deseas eliminar este producto?
             </div>
             <div class="modal-footer">
-                <a type="button" class="btn btn-danger" href="#" id="deleteProduct">Delete</a>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a type="button" class="btn btn-danger" href="#" id="deleteProduct">Si! Eliminar</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
             </div>
         </div>
     </div>

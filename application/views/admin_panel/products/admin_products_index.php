@@ -7,9 +7,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <body>
     <div class="container">
         <div class="my-5">
-            <h1 class="text-center">Admin panel - products</h1>
+            <h1 class="text-center">Admin panel - Productos</h1>
             <td><a href="#" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createProductModal">
-                    Create Product
+                    Crear Producto
                 </a></td>
         </div>
 </body>
