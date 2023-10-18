@@ -24,7 +24,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <input type="email" name="email" class="form-control" id="email" required>
             </div>
             <div class="col mt-2">
-                <label for="password" class="form-label">Password</label>
+                <label for="password" class="form-label">Contraseña</label>
                 <input type="password" name="password" class="form-control" id="password" required>
             </div>
 

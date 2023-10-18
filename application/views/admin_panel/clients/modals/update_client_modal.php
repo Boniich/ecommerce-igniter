@@ -2,14 +2,14 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create Product</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Editar Cliente</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <?php echo form_open_multipart('admin_panel/admin_panel_client/update_client'); ?>
                 <input type="hidden" name="id" id="idUpdateClient" required>
                 <div class="col">
-                    <label for="updateClientName" class="form-label">Full name</label>
+                    <label for="updateClientName" class="form-label">Nombre Completo</label>
                     <input type="text" name="full_name" class="form-control" id="updateClientName">
                 </div>
                 <div class="col">
@@ -17,7 +17,7 @@
                     <input type="email" name="email" class="form-control" id="updateClientEmail">
                 </div>
                 <div class="col">
-                    <label for="updateClientPassword" class="form-label">password</label>
+                    <label for="updateClientPassword" class="form-label">Contraseña</label>
                     <input type="text" name="password" class="form-control" id="updateClientPassword">
                 </div>
                 <div class="col">
@@ -25,12 +25,12 @@
                     <input type="text" name="dni" class="form-control" id="updateClientDNI">
                 </div>
                 <div class="col">
-                    <label for="updateClientProfileImage" class="form-label">Profile Image</label>
+                    <label for="updateClientProfileImage" class="form-label">Imagen de Perfil</label>
                     <input type="file" name="profile_image" class="form-control" id="updateClientProfileImage">
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" name="submit" class="btn btn-success">Update</button>
-                    <a type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</a>
+                    <button type="submit" name="submit" class="btn btn-success">Editar</button>
+                    <a type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</a>
                 </div>
                 <?php echo form_close(); ?>
             </div>

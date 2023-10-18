@@ -10,7 +10,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <a class="nav-link active" aria-current="page" href="<?php echo base_url('/'); ?>">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="<?php echo base_url('products'); ?>">Products</a>
+                    <a class="nav-link active" aria-current="page" href="<?php echo base_url('products'); ?>">Productos</a>
                 </li>
                 <!-- <li class="nav-item">
                     <a class="nav-link" href="#">Mi Carrito</a>

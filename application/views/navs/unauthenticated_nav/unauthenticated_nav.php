@@ -7,19 +7,19 @@
                     <a class="nav-link active" aria-current="page" href="<?php echo base_url('/'); ?>">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="<?php echo base_url('products'); ?>">Products</a>
+                    <a class="nav-link active" aria-current="page" href="<?php echo base_url('products'); ?>">Productos</a>
                 </li>
             </ul>
             <div>
                 <ul class="nav bg-dark nav-expand-lg justify-content-end">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="<?php echo base_url('client_login') ?>">Login clientes</a>
+                        <a class="nav-link" aria-current="page" href="<?php echo base_url('client_login') ?>">Ingresar Cliente</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo base_url('client_register') ?>">Register Clientes</a>
+                        <a class="nav-link" href="<?php echo base_url('client_register') ?>">Registrar Cliente</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-warning" href="<?php echo base_url('admin_login') ?>">Login Admin</a>
+                        <a class="nav-link btn btn-warning" href="<?php echo base_url('admin_login') ?>">Ingresar Admin</a>
                     </li>
                 </ul>
             </div>
