@@ -16,7 +16,7 @@ class Client_product extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Products';
+        $data['title'] = 'Productos';
         $data['products'] = $this->client_product_model->get_all_products();
         $this->load->view('head/head', $data);
         $this->_get_nav();

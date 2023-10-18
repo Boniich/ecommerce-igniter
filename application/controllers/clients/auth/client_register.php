@@ -22,7 +22,7 @@ class Client_register extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Client Login';
+        $data['title'] = 'Registro de clientes';
         $this->load->view('head/head', $data);
         $this->load->view('navs/unauthenticated_nav/unauthenticated_nav');
         $this->load->view('auth/client_auth/client_register');
