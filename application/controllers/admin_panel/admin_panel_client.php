@@ -22,7 +22,7 @@ class Admin_panel_client extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Admin Panel - Clients';
+        $data['title'] = 'Admin Panel - Clientes';
         $data['clients'] = $this->admin_client_model->get_all_clients();
         $data['admin'] = $this->_get_admin_data();
         $this->load->view('head/head', $data);
@@ -118,7 +118,7 @@ class Admin_panel_client extends CI_Controller
     public function get_client_details($id)
     {
         $data['client'] = $this->admin_client_model->get_one_client($id);
-        $data['title'] = 'Client: ' . $data['client'][0]['full_name'];
+        $data['title'] = 'Cliente: ' . $data['client'][0]['full_name'];
         $data['admin'] = $this->_get_admin_data();
         $data['id'] = $id;
         $this->load->view('head/head', $data);
