@@ -11,7 +11,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <a class="nav-link active" aria-current="page" href="<?php echo base_url('/'); ?>">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="<?php echo base_url('products'); ?>">Products</a>
+                        <a class="nav-link active" aria-current="page" href="<?php echo base_url('products'); ?>">Productos</a>
                     </li>
                 </ul>
                 <div class="dropdown">
@@ -19,8 +19,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         Admin Panel
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="<?php echo base_url('admin_panel/products'); ?>">Products</a></li>
-                        <li><a class="dropdown-item" href="<?php echo base_url('admin_panel/clients'); ?>">Clients</a></li>
+                        <li><a class="dropdown-item" href="<?php echo base_url('admin_panel/products'); ?>">Productos</a></li>
+                        <li><a class="dropdown-item" href="<?php echo base_url('admin_panel/clients'); ?>">Clientes</a></li>
                     </ul>
                 </div>
             </div>
