@@ -54,4 +54,48 @@ class Admin_client_model extends CI_Model
 
         return $image;
     }
+
+    public function check_dni($dni)
+    {
+        $query = $this->db->where('dni', $dni)->get($this->_table);
+        $is_dni_register = $query->num_rows() > 0 ?? true ?? false;
+        if ($is_dni_register) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function check_email($email)
+    {
+        $query = $this->db->where('email', $email)->get($this->_table);
+        $is_email_register = $query->num_rows() > 0 ?? true ?? false;
+        if ($is_email_register) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function check_email_at_update($id, $email)
+    {
+        $query = $this->db->where('id !=', $id)->where('email', $email)->get($this->_table);
+        $is_email_register = $query->num_rows() > 0 ?? true ?? false;
+        if ($is_email_register) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function check_dni_at_update($id, $dni)
+    {
+        $query = $this->db->where('id !=', $id)->where('dni', $dni)->get($this->_table);
+        $is_dni_register = $query->num_rows() > 0 ?? true ?? false;
+        if ($is_dni_register) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

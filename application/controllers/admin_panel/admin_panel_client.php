@@ -30,6 +30,7 @@ class Admin_panel_client extends CI_Controller
         $this->load->view('navs/modals/exit_modal');
         $this->load->view('admin_panel/clients/admin_clients_index');
         $this->load->view('feedback/successfully_alert');
+        $this->load->view('feedback/error_alert');
         $this->load->view('admin_panel/clients/show_clients_table');
         $this->load->view('admin_panel/clients/modals/delete_client_modal');
         $this->load->view($this->_path_view_folder . '/modals/create_client_modal');
@@ -43,6 +44,15 @@ class Admin_panel_client extends CI_Controller
         $password = $this->input->post('password');
         $dni = $this->input->post('dni');
         $profile_image = $this->_do_upload();
+
+        if ($this->admin_client_model->check_email($email)) {
+            $this->_show_email_already_taken_alert();
+        }
+
+        if ($this->admin_client_model->check_dni($dni)) {
+            $this->_show_dni_already_taken_alert();
+        }
+
 
         $client = array(
             'full_name' => $full_name,
@@ -64,6 +74,14 @@ class Admin_panel_client extends CI_Controller
         $email = $this->input->post('email');
         $dni = $this->input->post('dni');
         $password = $this->input->post('password');
+
+        if ($this->admin_client_model->check_email_at_update($id, $email)) {
+            $this->_show_email_already_taken_alert();
+        }
+
+        if ($this->admin_client_model->check_dni_at_update($id, $dni)) {
+            $this->_show_dni_already_taken_alert();
+        }
 
         if (empty($_FILES['profile_image']['name'])) {
             $productData = array(
@@ -148,5 +166,17 @@ class Admin_panel_client extends CI_Controller
         $id = $this->session->id;
         $data = $this->admin_data_model->get_admin($id);
         return $data;
+    }
+
+    private function _show_email_already_taken_alert()
+    {
+        $this->session->set_flashdata('error_alert', 'El email ya esta registrado. Intenta con otro');
+        redirect('admin_panel/clients');
+    }
+
+    private function _show_dni_already_taken_alert()
+    {
+        $this->session->set_flashdata('error_alert', 'El DNI ya esta registrado. Intenta con otro');
+        redirect('admin_panel/clients');
     }
 }
