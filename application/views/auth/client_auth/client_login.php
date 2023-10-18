@@ -7,7 +7,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <body>
 
     <div class="container d-flex flex-column justify-content-center align-items-center">
-        <h1 class="my-5">Login de Cliente</h1>
+        <h1 class="my-5">Ingreso de Clientes</h1>
 
         <div class="w-50 bg-light shadow p-3 mb-5 bg-body rounded border border-secondary rounded-3">
             <?php echo form_open('do_client_login'); ?>
@@ -16,11 +16,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <input type="email" name="email" class="form-control" id="inputEmail4">
             </div>
             <div class="col mt-2">
-                <label for="inputPassword4" class="form-label">Password</label>
+                <label for="inputPassword4" class="form-label">Contraseña</label>
                 <input type="password" name="password" class="form-control" id="inputPassword4">
             </div>
             <div class="col mt-4">
-                <button type="submit" name="submit" class="btn btn-success">Login in</button>
+                <button type="submit" name="submit" class="btn btn-success">Ingresar</button>
             </div>
             <?php echo form_close(); ?>
             <?php if (isset($error_message)) : ?>
