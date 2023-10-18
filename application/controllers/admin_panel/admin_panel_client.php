@@ -69,6 +69,16 @@ class Admin_panel_client extends CI_Controller
         $dni = $this->input->post('dni');
         $password = $this->input->post('password');
 
+        if ($this->admin_client_model->check_email_at_update($id, $email)) {
+            $this->session->set_flashdata('error_alert', 'El email ya esta registrado. Intenta con otro');
+            redirect('admin_panel/clients');
+        }
+
+        if ($this->admin_client_model->check_dni_at_update($id, $dni)) {
+            $this->session->set_flashdata('error_alert', 'El DNI ya esta registrado. Intenta con otro');
+            redirect('admin_panel/clients');
+        }
+
         if (empty($_FILES['profile_image']['name'])) {
             $productData = array(
                 'full_name' => $full_name,
