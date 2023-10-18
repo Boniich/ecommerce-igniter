@@ -45,8 +45,14 @@ class Admin_panel_client extends CI_Controller
         $dni = $this->input->post('dni');
         $profile_image = $this->_do_upload();
 
-        $this->_check_email($email);
-        $this->_check_dni($dni);
+        if ($this->admin_client_model->check_email($email)) {
+            $this->_show_email_already_taken_alert();
+        }
+
+        if ($this->admin_client_model->check_dni($dni)) {
+            $this->_show_dni_already_taken_alert();
+        }
+
 
         $client = array(
             'full_name' => $full_name,
@@ -70,13 +76,11 @@ class Admin_panel_client extends CI_Controller
         $password = $this->input->post('password');
 
         if ($this->admin_client_model->check_email_at_update($id, $email)) {
-            $this->session->set_flashdata('error_alert', 'El email ya esta registrado. Intenta con otro');
-            redirect('admin_panel/clients');
+            $this->_show_email_already_taken_alert();
         }
 
         if ($this->admin_client_model->check_dni_at_update($id, $dni)) {
-            $this->session->set_flashdata('error_alert', 'El DNI ya esta registrado. Intenta con otro');
-            redirect('admin_panel/clients');
+            $this->_show_dni_already_taken_alert();
         }
 
         if (empty($_FILES['profile_image']['name'])) {
@@ -164,19 +168,15 @@ class Admin_panel_client extends CI_Controller
         return $data;
     }
 
-    private function _check_email($email)
+    private function _show_email_already_taken_alert()
     {
-        if ($this->admin_client_model->check_email($email)) {
-            $this->session->set_flashdata('error_alert', 'El email ya esta registrado. Intenta con otro');
-            redirect('admin_panel/clients');
-        }
+        $this->session->set_flashdata('error_alert', 'El email ya esta registrado. Intenta con otro');
+        redirect('admin_panel/clients');
     }
 
-    private function _check_dni($dni)
+    private function _show_dni_already_taken_alert()
     {
-        if ($this->admin_client_model->check_dni($dni)) {
-            $this->session->set_flashdata('error_alert', 'El DNI ya esta registrado. Intenta con otro');
-            redirect('admin_panel/clients');
-        }
+        $this->session->set_flashdata('error_alert', 'El DNI ya esta registrado. Intenta con otro');
+        redirect('admin_panel/clients');
     }
 }
