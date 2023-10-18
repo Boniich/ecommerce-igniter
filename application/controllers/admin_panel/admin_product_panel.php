@@ -23,7 +23,7 @@ class Admin_product_panel extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Admin Panel - Products';
+        $data['title'] = 'Admin Panel - Productos';
         $data['products'] = $this->admin_product_model->get_all_products();
         $data['admin'] = $this->_get_admin_data();
         $this->load->view('head/head', $data);
@@ -53,7 +53,7 @@ class Admin_product_panel extends CI_Controller
     public function get_product_details($id)
     {
         $data['product'] = $this->admin_product_model->get_one_product($id);
-        $data['title'] = $data['product'][0]['name'];
+        $data['title'] = $data['producto'][0]['name'];
         $data['admin'] = $this->_get_admin_data();
         $data['id'] = $id;
         $this->load->view('head/head', $data);
