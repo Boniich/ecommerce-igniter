@@ -1,39 +1,60 @@
 ###################
-What is CodeIgniter
+Ecommerce Igniter 1.0
 ###################
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+Proyecto de una tienda online creado para la materia Seminario de Lenguajes (PHP) 2023.
+
+Fue desarrollado utilizando Codeigniter 3 y bootstrap 5. 
+
 
 *******************
-Release Information
+Desarrolladores
 *******************
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+Bonino Ezequiel (Boniich)
 
 **************************
-Changelog and New Features
+Caracteristicas
 **************************
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
+- El sitio cuenta con clientes y administradores. Ademas se incluye al usuario no logeado como "visitante"
+
+- Tanto el cliente, visitante y administrador pueden ver el HOME y productos, asi como los detalles de estos, pero la diferencia esta en:
+
+- Un visitante puede ver los productos y detalles de un producto pero no podra ver el boton de "agregar al carrito"
+- Un cliente vera un boton de "Agregar al Carrito" que de momento no tiene ninguna funcionalidad
+- Un administrador vera un mensaje que dice que los administradores no pueden comprar
+
+- Un Cliente podra registrarse e ingresar al sistema
+- Un cliente podra ver los detalles de los productos al hacer click en uno de ellos.
+
+
+- Los administradores solo podran ingresar al sistema (si se encuentran registrados)
+- Los administradores tienen un panel especial en el cual pueden ver,agregar,editar o eliminar Productos y Clientes
+
 
 *******************
-Server Requirements
+Estructra de Carpetas
 *******************
+```
+- application
+    |__controllers
+    |    |__admin_panel
+    |        |__login
+    |    |__clients
+    |        |__auth
+    |__models
+    |   |__admin_panel
+    |   |    |__auth
+    |   |    |__clients
+    |   |    |__products
+    |   |__clients
+    |   |     |__auth
+    |   |__home 
+    |
 
-PHP version 5.6 or newer is recommended.
+```
 
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
 
 ************
 Installation
