@@ -13,11 +13,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <img src="<?php echo base_url($image); ?>" class="card-img-top" alt="...">
             </div>
             <div class="col-sm">
-                <p>Marca</p>
+                <!-- <p>Marca</p> -->
                 <h3><?php echo $item['name'] ?></h3>
                 <p><?php echo $item['description'] ?></p>
                 <p>Cantidad disponible: <?php echo $item['stock'] ?></p>
-                <p>$<?php echo $item['price'] ?></p>
+                <p class="text-dark fs-3"><b>$<?php echo $item['price'] ?></b></p>
             </div>
         <?php endforeach; ?>
     </div>
