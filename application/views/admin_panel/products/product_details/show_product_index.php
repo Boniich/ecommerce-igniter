@@ -7,7 +7,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <body>
     <div class="container">
         <div class="my-5">
-            <h1 class="text-center">Admin panel - Product ID: <?php echo $id ?></h1>
+            <h1 class="text-center">Admin panel - ID del Producto: <?php echo $id ?></h1>
         </div>
 </body>
 
