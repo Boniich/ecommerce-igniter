@@ -8,14 +8,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <div class="d-flex">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="<?php echo base_url('/'); ?>">Home</a>
+                        <a class="nav-link text-white" aria-current="page" href="<?php echo base_url('/'); ?>">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="<?php echo base_url('products'); ?>">Productos</a>
+                        <a class="nav-link text-white" aria-current="page" href="<?php echo base_url('products'); ?>">Productos</a>
                     </li>
                 </ul>
                 <div class="dropdown">
-                    <button class="d-flex justify-content-center align-items-center gap-2 btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="d-flex justify-content-center align-items-center gap-2 btn btn-secondary bg-dark border-0 dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         Admin Panel
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -26,7 +26,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
             </div>
             <div>
                 <div class="dropdown">
-                    <button class="d-flex justify-content-center align-items-center gap-2 btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="d-flex justify-content-center align-items-center gap-2 btn btn-secondary bg-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         <?php foreach ($admin as $data) : ?>
                             <?php if ($data['image'] == NULL || $data['image'] == '') {
                                 $image = './assets/image-profile.png';
