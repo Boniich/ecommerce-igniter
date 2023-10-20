@@ -7,10 +7,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <p class="m-0 text-light">Ecommerce Igniter 🔥</p>
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="<?php echo base_url('/'); ?>">Home</a>
+                    <a class="nav-link text-white" aria-current="page" href="<?php echo base_url('/'); ?>">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="<?php echo base_url('products'); ?>">Productos</a>
+                    <a class="nav-link text-white" aria-current="page" href="<?php echo base_url('products'); ?>">Productos</a>
                 </li>
                 <!-- <li class="nav-item">
                     <a class="nav-link" href="#">Mi Carrito</a>
@@ -21,7 +21,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
             </ul>
             <div>
                 <div class="dropdown">
-                    <button class="d-flex justify-content-center align-items-center gap-2 btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="d-flex justify-content-center align-items-center gap-2 btn btn-secondary bg-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         <?php foreach ($client as $data) : ?>
                             <?php if ($data['image'] == NULL || $data['image'] == '') {
                                 $image = './assets/image-profile.png';
