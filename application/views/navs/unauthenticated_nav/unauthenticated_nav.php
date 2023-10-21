@@ -13,13 +13,13 @@
             <div>
                 <ul class="nav bg-dark nav-expand-lg justify-content-end">
                     <li class="nav-item">
-                        <a class="nav-link text-white" aria-current="page" href="<?php echo base_url('client_login') ?>">Ingresar Cliente</a>
+                        <a class="nav-link text-white" aria-current="page" href="<?php echo base_url('client_login') ?>">Ingresar como Cliente</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="<?php echo base_url('client_register') ?>">Registrar Cliente</a>
+                        <a class="nav-link text-white" href="<?php echo base_url('client_register') ?>">Registrarse como Cliente</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-warning" href="<?php echo base_url('admin_login') ?>">Ingresar Admin</a>
+                        <a class="nav-link btn btn-warning" href="<?php echo base_url('admin_login') ?>">Ingresar como Admin</a>
                     </li>
                 </ul>
             </div>
