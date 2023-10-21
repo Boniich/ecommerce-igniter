@@ -8,6 +8,10 @@ Fue desarrollado utilizando Codeigniter 3 y bootstrap 5.
 
 Bonino Ezequiel (Boniich)
 
+Web: www.boniich.com (Puede que cambiar a .ar en unos meses).  
+Linkedin: https://www.linkedin.com/in/boniich/  
+GitHub: https://github.com/Boniich
+
 ### Caracteristicas
 
 - El sitio cuenta con clientes y administradores. Ademas se incluye al usuario no logeado como "visitante".
@@ -73,8 +77,8 @@ Bonino Ezequiel (Boniich)
 
 Otras carpetas importantes
 
-- documentation
-- uploads
+- documentation (Encontraran un Diagrama UML, diagrama de base de datos, y script de la base de datos del proyecto)
+- uploads (Imagenes subidas al proyecto, que se conectan con la base de datos)
 
 ```
 
@@ -97,3 +101,24 @@ Email: pietro2@gmail.com
 Contraseña: 123456
 
 ---
+
+## Como ejecutar el proyecto
+
+### 1- Con el .rar de la entrega
+
+1- Abrir .rar  
+2- Correr xamp,wamp o cualquier otro entorno de desarrollo  
+3- Crear una base de datos en `phpmyadmin` o algun editor de base de datos  
+4- Ir a la carpeta `documentation/data_base` e importar ese archivo desde el mismo `phpmyadmin`
+
+Listo. El proyecto deberia funcionar correctamente.
+
+Recuerda, que si usas una PC de la UNLA, tienen problemas de puertos con wamp, por lo cual una vez solucionado eso debes habilitar la opcion de `port` en el archivo de config del proyecto
+
+### 2- Con Git clone
+
+Si eres alguien de internet que esta viendo este proyecto, y quieres usar `git clone`, debes seguir los mismo pasos que antes, pero debes hacer un paso extra.
+
+Ve a la parte de `config` y luego al archivo `config` y busca `$config['base_url']` (es uno de los primeros del archivo)
+
+Cambia `http://localhost/ecommerceIgniter/` por `http://localhost/ecommerce-igniter/`
