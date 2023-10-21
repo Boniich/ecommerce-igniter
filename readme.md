@@ -4,6 +4,12 @@ Proyecto de una tienda online creado para la materia Seminario de Lenguajes (PHP
 
 Fue desarrollado utilizando Codeigniter 3 y bootstrap 5.
 
+## Demo del proyecto
+
+Un pequeño video mostran y explicando el sitio web
+
+https://youtu.be/PFp2sduYeCg
+
 ### Desarrolladores
 
 Bonino Ezequiel (Boniich)
@@ -108,8 +114,8 @@ Contraseña: 123456
 
 1- Abrir .rar  
 2- Correr xamp,wamp o cualquier otro entorno de desarrollo  
-3- Crear una base de datos en `phpmyadmin` o algun editor de base de datos  
-4- Ir a la carpeta `documentation/data_base` e importar ese archivo desde el mismo `phpmyadmin`
+3- Crear una base de datos en `phpmyadmin` o algun editor de base de datos con el nombre de `ecommerce_igniter`
+4- Ir a la carpeta `documentation/data_base` e importar ese archivo `ecommerce_igniter.sql` desde el mismo `phpmyadmin`
 
 Listo. El proyecto deberia funcionar correctamente.
 
