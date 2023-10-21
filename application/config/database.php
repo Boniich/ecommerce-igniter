@@ -80,6 +80,7 @@ $db['default'] = array(
 	'password' => '',
 	'database' => 'ecommerce_igniter',
 	'dbdriver' => 'mysqli',
+	// 'port' => Si necesitas usar otro puerto, habilita est opcion y pon el numero del puerto que usas
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
