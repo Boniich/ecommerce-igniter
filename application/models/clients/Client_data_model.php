@@ -4,6 +4,11 @@ class Client_data_model extends CI_Model
 {
     private string $_table = 'clients';
 
+    public function __construct()
+    {
+        $this->load->database();
+    }
+
     public function get_client($id)
     {
         $this->db->select('full_name, image')->where('id', $id);
