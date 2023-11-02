@@ -65,6 +65,10 @@ $route['do_client_register'] = 'clients/auth/client_register/do_client_register'
 $route['products'] = 'clients/client_product/index';
 $route['product/(:num)'] = 'clients/client_product/get_product_details/$1';
 
+
+$route['shopping_car'] = 'clients/shopping_car/shopping_car';
+
+
 $route['admin_panel/products'] = 'admin_panel/admin_product_panel/index';
 $route['show_product_data/(:num)'] = 'admin_panel/admin_product_panel/show_product_data/$1';
 $route['admin_panel/product/(:num)'] = 'admin_panel/admin_product_panel/get_product_details/$1';
