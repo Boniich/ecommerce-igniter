@@ -32,15 +32,40 @@ class Shopping_car_model extends CI_Model
     {
         $client_id = $data['client_id'];
         $product_id = $data['product_id'];
+
+        $new_amount = $this->get_new_product_amount($data);
+        $newData = array('client_id' => $client_id, 'product_id' => $product_id, 'product_amount' => $new_amount);
+
+        $is_updated = $this->db->where('client_id', $client_id)->where('product_id', $product_id)->update('shopping_car', $newData);
+        if ($is_updated) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private function get_new_product_amount($data)
+    {
+        $client_id = $data['client_id'];
+        $product_id = $data['product_id'];
         $amount = $data['product_amount'];
 
         $query = $this->db->where('client_id', $client_id)->where('product_id', $product_id)->select('product_amount')->get('shopping_car');
         $row = $query->row();
-        $actual_amount = $row->product_amount + $amount;
-        $newData = array('client_id' => $client_id, 'product_id' => $product_id, 'product_amount' => $actual_amount);
+        $new_amount = $row->product_amount + $amount;
 
-        $is_updated = $this->db->where('client_id', $client_id)->where('product_id', $product_id)->update('shopping_car', $newData);
-        if ($is_updated) {
+        return $new_amount;
+    }
+
+    public function is_product_stock_exceeded($data)
+    {
+        $product_id = $data['product_id'];
+
+        $query = $this->db->select('stock')->from('products')->where('id', $product_id)->get();
+        $row = $query->row();
+        $new_amount = $this->get_new_product_amount($data);
+
+        if ($new_amount > $row->stock) {
             return true;
         } else {
             return false;
