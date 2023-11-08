@@ -13,22 +13,26 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <img src="<?php echo base_url($image); ?>" class="card-img-top" alt="...">
             </div>
             <div class="col-sm">
-                <!-- <p>Marca</p> -->
+                <?php echo form_open('add_product_to_car/' . $item['id']); ?>
                 <h3><?php echo $item['name'] ?></h3>
                 <p><?php echo $item['description'] ?></p>
                 <p>Cantidad disponible: <?php echo $item['stock'] ?></p>
+                <label>Cantidad solicitada:</label>
+                <input type="number" id="amount" name="amount" min="1" max="<?php echo $item['stock'] ?>" value="1">
                 <p class="text-dark fs-3"><b>$<?php echo $item['price'] ?></b></p>
+
                 <?php if (!$this->session->login_in) : ?>
                     <div class="alert alert-info" role="alert">
                         Debes Iniciar session para comprar
                     </div>
                 <?php elseif ($this->session->login_in && $this->session->role === 'client') : ?>
-                    <a href="<?php echo base_url('add_product_to_car/' . $item['id']); ?>" class="btn btn-primary">Agregar al carrito</a>
+                    <button type="submit" class="btn btn-primary">Agregar al carrito</button>
                 <?php elseif ($this->session->login_in && $this->session->role === 'admin') : ?>
                     <div class="alert alert-warning" role="alert">
                         Lo sentimos. Los administradores <b>NO PUEDEN COMPRAR</b>
                     </div>
                 <?php endif ?>
+                <?php echo form_close(); ?>
             </div>
         <?php endforeach; ?>
     </div>
