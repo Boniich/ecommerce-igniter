@@ -39,6 +39,9 @@ class Shopping_car extends CI_Controller
         if ($this->shopping_car_model->add_product_to_car($data)) {
             $this->session->set_flashdata('sucessfully_alert', 'Producto agregado al carrito con exito');
             redirect('product/' . $product_id);
+        } else {
+            $this->session->set_flashdata('error_alert', 'Ups! Algo salio mal! No pudimos agregar tu producto');
+            redirect('product/' . $product_id);
         }
     }
 

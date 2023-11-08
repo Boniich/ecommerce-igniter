@@ -32,6 +32,7 @@ class Client_product extends CI_Controller
         $this->load->view('head/head', $data);
         $this->_get_nav();
         $this->load->view('feedback/successfully_alert');
+        $this->load->view('feedback/error_alert');
         $this->load->view('navs/modals/exit_modal');
         $this->load->view('clients/show_product_details');
     }
