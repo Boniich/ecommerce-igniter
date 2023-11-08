@@ -8,6 +8,7 @@ class Shopping_car extends CI_Controller
         parent::__construct();
         $this->load->helper('url_helper');
         $this->load->model('clients/client_data_model');
+        $this->load->model('clients/shopping_car/shopping_car_model');
         $this->load->library('session');
 
         if (!$this->session->login_in) {
@@ -21,10 +22,12 @@ class Shopping_car extends CI_Controller
     public function index()
     {
         $data['title'] = 'Carrito de compras';
+        $data['products_in_car'] = $this->shopping_car_model->get_product_in_shopping_car($this->session->id);
         $this->load->view('head/head', $data);
         $this->load->view('navs/modals/exit_modal');
         $this->get_nav();
         $this->load->view('clients/shopping_car/shopping_car_index');
+        $this->load->view('clients/shopping_car/shopping_car_list');
     }
 
     private function _get_client_data()
