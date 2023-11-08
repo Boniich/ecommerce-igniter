@@ -17,4 +17,13 @@ class Shopping_car_model extends CI_Model
         $result = $query->result_array();
         return $result;
     }
+
+    public function add_product_to_car($data)
+    {
+        if ($this->db->insert('shopping_car', $data)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
