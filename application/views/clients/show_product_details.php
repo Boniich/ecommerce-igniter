@@ -23,7 +23,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         Debes Iniciar session para comprar
                     </div>
                 <?php elseif ($this->session->login_in && $this->session->role === 'client') : ?>
-                    <button class="btn btn-primary">Agregar al carrito</button>
+                    <a href="<?php echo base_url('add_product_to_car/' . $item['id']); ?>" class="btn btn-primary">Agregar al carrito</a>
                 <?php elseif ($this->session->login_in && $this->session->role === 'admin') : ?>
                     <div class="alert alert-warning" role="alert">
                         Lo sentimos. Los administradores <b>NO PUEDEN COMPRAR</b>
