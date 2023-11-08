@@ -30,10 +30,12 @@ class Shopping_car extends CI_Controller
         $this->load->view('clients/shopping_car/shopping_car_list');
     }
 
-    public function add_product_to_car($product_id, $amount = 1)
+    public function add_product_to_car($product_id)
     {
         $client_id = $this->session->id;
+        $amount = $this->input->post('amount');
         $data = array('client_id' => $client_id, 'product_id' => $product_id, 'product_amount' => $amount);
+
         if ($this->shopping_car_model->add_product_to_car($data)) {
             $this->session->set_flashdata('sucessfully_alert', 'Producto agregado al carrito con exito');
             redirect('product/' . $product_id);
