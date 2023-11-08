@@ -46,8 +46,13 @@ class Shopping_car extends CI_Controller
     private function increce_amount_of_duplicate_product_in_car($data)
     {
         $product_id = $data['product_id'];
-        $result = $this->shopping_car_model->increce_amount_of_duplicate_product_in_car($data);
-        $this->dispach_alert($result, $product_id);
+        if ($this->shopping_car_model->is_product_stock_exceeded($data)) {
+            $this->session->set_flashdata('error_alert', 'Se ha exido la cantidad disponible! No hemos podido agregar tu producto');
+            redirect('product/' . $product_id);
+        } else {
+            $result = $this->shopping_car_model->increce_amount_of_duplicate_product_in_car($data);
+            $this->dispach_alert($result, $product_id);
+        }
     }
 
     private function add_new_product_to_car($data)
