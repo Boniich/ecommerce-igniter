@@ -19,6 +19,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <p>Cantidad disponible: <?php echo $item['stock'] ?></p>
                 <label>Cantidad solicitada:</label>
                 <input type="number" id="amount" name="amount" min="1" max="<?php echo $item['stock'] ?>" value="1">
+                <small class="d-none" id="error-msg-input-amount">El valor debe ser entre 1 y la cantidad de STOCK</small>
                 <p class="text-dark fs-3"><b>$<?php echo $item['price'] ?></b></p>
 
                 <?php if (!$this->session->login_in) : ?>
@@ -26,7 +27,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         Debes Iniciar session para comprar
                     </div>
                 <?php elseif ($this->session->login_in && $this->session->role === 'client') : ?>
-                    <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+                    <button id="button-car" type="submit" class="btn btn-primary">Agregar al carrito</button>
                 <?php elseif ($this->session->login_in && $this->session->role === 'admin') : ?>
                     <div class="alert alert-warning" role="alert">
                         Lo sentimos. Los administradores <b>NO PUEDEN COMPRAR</b>
@@ -38,6 +39,27 @@ defined('BASEPATH') or exit('No direct script access allowed');
     </div>
 </div>
 </div>
+
+<script>
+    let inputAmount = document.getElementById('amount');
+    inputAmount.addEventListener('change', function(event) {
+        let button = event.target;
+        let msgError = document.getElementById('error-msg-input-amount')
+        let addProductButton = document.getElementById('button-car');
+
+        let value = parseInt(button.value);
+        let min = parseInt(button.min);
+        let max = parseInt(button.max);
+        if (value < min || value > max) {
+            addProductButton.disabled = true;
+            msgError.className = "d-block";
+        } else {
+            addProductButton.disabled = false;
+            msgError.className = "d-none";
+        }
+
+    });
+</script>
 </body>
 
 </html>
