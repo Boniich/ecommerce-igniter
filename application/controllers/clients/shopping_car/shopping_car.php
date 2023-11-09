@@ -22,12 +22,18 @@ class Shopping_car extends CI_Controller
     public function index()
     {
         $data['title'] = 'Carrito de compras';
-        $data['products_in_car'] = $this->shopping_car_model->get_product_in_shopping_car($this->session->id);
+        $is_there_products = $this->shopping_car_model->is_there_products_in_shopping_car($this->session->id);
+
         $this->load->view('head/head', $data);
         $this->load->view('navs/modals/exit_modal');
         $this->get_nav();
         $this->load->view('clients/shopping_car/shopping_car_index');
-        $this->load->view('clients/shopping_car/shopping_car_list');
+        if ($is_there_products) {
+            $data['products_in_car'] = $this->shopping_car_model->get_product_in_shopping_car($this->session->id);
+            $this->load->view('clients/shopping_car/shopping_car_list', $data);
+        } else {
+            $this->load->view('clients/shopping_car/feedback/show_msg_not_products_in_car');
+        }
     }
 
     public function add_product_to_car($product_id)
