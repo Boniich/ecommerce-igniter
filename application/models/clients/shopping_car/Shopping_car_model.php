@@ -18,6 +18,16 @@ class Shopping_car_model extends CI_Model
         return $result;
     }
 
+    public function is_there_products_in_shopping_car($client_id)
+    {
+        $query = $this->db->where('client_id', $client_id)->get('shopping_car');
+        if ($query->num_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function check_duplicate_product_in_car($client_id, $product_id)
     {
         $query = $this->db->where('client_id', $client_id)->where('product_id', $product_id)->get('shopping_car');
