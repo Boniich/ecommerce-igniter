@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 ?>
+
 <div class="container">
     <div class="row mt-5">
         <?php foreach ($product as $item) : ?>
@@ -39,27 +40,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     </div>
 </div>
 </div>
-
-<script>
-    function changeInput() {
-        onchange = (event) => {
-            let input = event.target;
-            let msgError = document.getElementById('error-msg-input-amount')
-            let addProductButton = document.getElementById('button-car');
-
-            let value = parseInt(input.value);
-            let min = parseInt(input.min);
-            let max = parseInt(input.max);
-            if (value < min || value > max || input.value === '') {
-                addProductButton.disabled = true;
-                msgError.className = "d-block text-danger";
-            } else {
-                addProductButton.disabled = false;
-                msgError.className = "d-none";
-            }
-        }
-    }
-</script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/changeInput.js') ?>"></script>
 </body>
 
 </html>
