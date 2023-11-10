@@ -19,7 +19,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <p>Cantidad disponible: <?php echo $item['stock'] ?></p>
                 <label>Cantidad solicitada:</label>
                 <input type="number" id="amount" name="amount" min="1" max="<?php echo $item['stock'] ?>" value="1">
-                <small class="d-none" id="error-msg-input-amount">El valor debe ser entre 1 y la cantidad de STOCK</small>
+                <small class="d-none" id="error-msg-input-amount">El valor debe ser entre 1 y la cantidad de disponible</small>
                 <p class="text-dark fs-3"><b>$<?php echo $item['price'] ?></b></p>
 
                 <?php if (!$this->session->login_in) : ?>
@@ -52,7 +52,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         let max = parseInt(button.max);
         if (value < min || value > max) {
             addProductButton.disabled = true;
-            msgError.className = "d-block";
+            msgError.className = "d-block text-danger";
         } else {
             addProductButton.disabled = false;
             msgError.className = "d-none";
