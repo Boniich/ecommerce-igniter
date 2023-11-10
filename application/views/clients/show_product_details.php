@@ -18,9 +18,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <h3><?php echo $item['name'] ?></h3>
                 <p><?php echo $item['description'] ?></p>
                 <p>Cantidad disponible: <?php echo $item['stock'] ?></p>
-                <label>Cantidad solicitada:</label>
-                <input onchange="changeInput()" type="number" id="amount" name="amount" min="1" max="<?php echo $item['stock'] ?>" value="1">
-                <small class="d-none" id="error-msg-input-amount">El valor debe ser entre 1 y la cantidad de disponible</small>
+                <?php if ($this->session->login_in && $this->session->role === 'client') : ?>
+                    <label>Cantidad solicitada:</label>
+                    <input onchange="changeInput()" type="number" id="amount" name="amount" min="1" max="<?php echo $item['stock'] ?>" value="1">
+                    <small class="d-none" id="error-msg-input-amount">El valor debe ser entre 1 y la cantidad de disponible</small>
+                <?php endif ?>
                 <p class="text-dark fs-3"><b>$<?php echo $item['price'] ?></b></p>
 
                 <?php if (!$this->session->login_in) : ?>
