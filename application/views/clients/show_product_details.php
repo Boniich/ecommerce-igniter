@@ -43,14 +43,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <script>
     function changeInput() {
         onchange = (event) => {
-            let button = event.target;
+            let input = event.target;
             let msgError = document.getElementById('error-msg-input-amount')
             let addProductButton = document.getElementById('button-car');
 
-            let value = parseInt(button.value);
-            let min = parseInt(button.min);
-            let max = parseInt(button.max);
-            if (value < min || value > max) {
+            let value = parseInt(input.value);
+            let min = parseInt(input.min);
+            let max = parseInt(input.max);
+            if (value < min || value > max || input.value === '') {
                 addProductButton.disabled = true;
                 msgError.className = "d-block text-danger";
             } else {
