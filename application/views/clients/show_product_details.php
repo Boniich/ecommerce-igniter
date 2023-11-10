@@ -18,7 +18,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <p><?php echo $item['description'] ?></p>
                 <p>Cantidad disponible: <?php echo $item['stock'] ?></p>
                 <label>Cantidad solicitada:</label>
-                <input type="number" id="amount" name="amount" min="1" max="<?php echo $item['stock'] ?>" value="1">
+                <input onchange="changeInput()" type="number" id="amount" name="amount" min="1" max="<?php echo $item['stock'] ?>" value="1">
                 <small class="d-none" id="error-msg-input-amount">El valor debe ser entre 1 y la cantidad de disponible</small>
                 <p class="text-dark fs-3"><b>$<?php echo $item['price'] ?></b></p>
 
@@ -41,24 +41,24 @@ defined('BASEPATH') or exit('No direct script access allowed');
 </div>
 
 <script>
-    let inputAmount = document.getElementById('amount');
-    inputAmount.addEventListener('change', function(event) {
-        let button = event.target;
-        let msgError = document.getElementById('error-msg-input-amount')
-        let addProductButton = document.getElementById('button-car');
+    function changeInput() {
+        onchange = (event) => {
+            let button = event.target;
+            let msgError = document.getElementById('error-msg-input-amount')
+            let addProductButton = document.getElementById('button-car');
 
-        let value = parseInt(button.value);
-        let min = parseInt(button.min);
-        let max = parseInt(button.max);
-        if (value < min || value > max) {
-            addProductButton.disabled = true;
-            msgError.className = "d-block text-danger";
-        } else {
-            addProductButton.disabled = false;
-            msgError.className = "d-none";
+            let value = parseInt(button.value);
+            let min = parseInt(button.min);
+            let max = parseInt(button.max);
+            if (value < min || value > max) {
+                addProductButton.disabled = true;
+                msgError.className = "d-block text-danger";
+            } else {
+                addProductButton.disabled = false;
+                msgError.className = "d-none";
+            }
         }
-
-    });
+    }
 </script>
 </body>
 
