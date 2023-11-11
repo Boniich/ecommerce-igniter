@@ -10,6 +10,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <th scope="col">Nombre</th>
             <th scope="col">Cantidad solicitada</th>
             <th scope="col">Precio unitario</th>
+            <th scope="col">P.Total x Producto</th>
             <th scope="col">Detalles</th>
             <th scope="col">Editar</th>
             <th scope="col">Eliminar</th>
@@ -23,6 +24,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <td><?php echo $product['name']; ?> </td>
                 <td class="card-text"><?php echo $product['product_amount']; ?></td>
                 <td>$<?php echo $product['price']; ?></td>
+                <td>$<?php echo $product['total_x_product']; ?></td>
 
                 <td><a href="<?php echo base_url('admin_panel/product/') . $product['id']; ?>">Detalles</a></td>
                 <td>
