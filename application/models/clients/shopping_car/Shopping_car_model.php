@@ -10,9 +10,12 @@ class Shopping_car_model extends CI_Model
 
     public function get_product_in_shopping_car($client_id)
     {
-        $query = $this->db->select('p.id,p.name,p.price,s.product_amount')
+        $select_query_data = 'p.id,p.name,p.price,s.product_amount';
+        $get_total_x_product = 'SUM(p.price*s.product_amount) as total_x_product';
+
+        $query = $this->db->select($select_query_data . ',' . $get_total_x_product)
             ->from('products p')->join('shopping_car s', 's.product_id = p.id')
-            ->where('client_id', $client_id)->get();
+            ->where('client_id', $client_id)->group_by('s.product_id')->get();
 
         $result = $query->result_array();
         return $result;
