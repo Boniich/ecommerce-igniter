@@ -37,6 +37,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <?php endforeach; ?>
     </tbody>
 </table>
+<div>
+    <p>Total: <b>$<?php echo $total ?></b></p>
+</div>
 </div>
 </body>
 
