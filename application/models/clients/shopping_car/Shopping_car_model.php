@@ -21,6 +21,15 @@ class Shopping_car_model extends CI_Model
         return $result;
     }
 
+    public function get_total_to_pay_by_shopping_car($client_id)
+    {
+        $query = $this->db->select('SUM(p.price*s.product_amount) as total')->from('products p')->join('shopping_car s', 's.product_id = p.id')
+            ->where('client_id', $client_id)->get();
+        $total  = $query->row()->total;
+
+        return $total;
+    }
+
     public function is_there_products_in_shopping_car($client_id)
     {
         $query = $this->db->where('client_id', $client_id)->get('shopping_car');

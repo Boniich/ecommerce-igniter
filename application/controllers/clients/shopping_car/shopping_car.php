@@ -34,6 +34,7 @@ class Shopping_car extends CI_Controller
         $this->load->view('clients/shopping_car/shopping_car_index');
         if ($is_there_products) {
             $data['products_in_car'] = $this->shopping_car_model->get_product_in_shopping_car($this->session->id);
+            $data['total'] = $this->shopping_car_model->get_total_to_pay_by_shopping_car($this->session->id);
             $this->load->view('clients/shopping_car/shopping_car_list', $data);
         } else {
             $this->load->view('clients/shopping_car/feedback/show_msg_not_products_in_car');
