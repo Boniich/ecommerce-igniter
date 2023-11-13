@@ -102,4 +102,15 @@ class Shopping_car_model extends CI_Model
             return false;
         }
     }
+
+    public function delete_product_from_shopping_car($client_id, $product_id)
+    {
+        $this->db->where('client_id', $client_id)->where('product_id', $product_id);
+        $is_deleted = $this->db->delete('shopping_car');
+        if ($is_deleted) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
