@@ -30,9 +30,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <td>
                     Editar
                 </td>
-                <td>
-                    Eliminar
-                </td>
+                <td><a href="#" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteProductFromCarModal" data-client-id="<?php echo $this->session->id ?>" data-product-id="<?php echo $product['id']; ?>">
+                        Eliminar
+                    </a></td>
             </tr>
         <?php endforeach; ?>
     </tbody>
