@@ -25,7 +25,10 @@ class Shopping_car extends CI_Controller
         $is_there_products = $this->shopping_car_model->is_there_products_in_shopping_car($this->session->id);
         $this->load->view('head/head', $data);
         $this->load->view('navs/modals/exit_modal');
+        $this->load->view('clients/shopping_car/modals/delete_product_from_shopping_car_model');
         $this->get_nav();
+        $this->load->view('feedback/successfully_alert');
+        $this->load->view('feedback/error_alert');
         $this->show_shopping_car_view($is_there_products);
     }
 
@@ -115,6 +118,17 @@ class Shopping_car extends CI_Controller
         if ($this->session->role === "client") {
             $data['client'] = $this->_get_client_data();
             $this->load->view('navs/client_nav/client_nav', $data);
+        }
+    }
+
+    public function delete_product_from_shopping_car($client_id, $product_id)
+    {
+        if ($this->shopping_car_model->delete_product_from_shopping_car($client_id, $product_id)) {
+            $this->session->set_flashdata('sucessfully_alert', 'Producto eliminadod de tu carrito con exito');
+            redirect('shopping_car');
+        } else {
+            $this->session->set_flashdata('error_alert', 'Ups! Algo salio mal! No pudimos eliminar el producto de tu carrito');
+            redirect('shopping_car');
         }
     }
 }
