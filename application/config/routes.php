@@ -68,6 +68,7 @@ $route['product/(:num)'] = 'clients/client_product/get_product_details/$1';
 
 $route['shopping_car'] = 'clients/shopping_car/shopping_car';
 $route['add_product_to_car/(:num)'] = 'clients/shopping_car/shopping_car/add_product_to_car/$1';
+$route['delete_product_from_car/(:num)/(:num)'] = 'clients/shopping_car/shopping_car/delete_product_from_shopping_car/$1/$2';
 
 
 $route['admin_panel/products'] = 'admin_panel/admin_product_panel/index';
