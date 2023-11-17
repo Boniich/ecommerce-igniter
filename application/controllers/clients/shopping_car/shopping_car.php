@@ -142,7 +142,7 @@ class Shopping_car extends CI_Controller
     public function delete_product_from_shopping_car($client_id, $product_id)
     {
         if ($this->shopping_car_model->delete_product_from_shopping_car($client_id, $product_id)) {
-            $this->session->set_flashdata('sucessfully_alert', 'Producto eliminadod de tu carrito con exito');
+            $this->session->set_flashdata('sucessfully_alert', 'Producto eliminado de tu carrito con exito');
             redirect('shopping_car');
         } else {
             $this->session->set_flashdata('error_alert', 'Ups! Algo salio mal! No pudimos eliminar el producto de tu carrito');
