@@ -12,7 +12,7 @@
                         <p> Stock disponible: <b id="stock"></b> </p>
                     </div>
                     <input type="number" id="amount-shopping" name="amount-shopping" min="1">
-                    <small class="d-none" id="error-msg-input-amount">El valor debe ser entre 1 y la cantidad de disponible</small>
+                    <small class="d-none" id="error-msg-input-amount">El valor debe ser entre 1 y el STOCK disponible</small>
                 </td>
             </div>
             <div class="modal-footer">
@@ -52,8 +52,11 @@
             let max = parseInt(input.max);
             if (value < min || value > max || input.value === "") {
                 msgError.className = "d-block text-danger";
+                editButton.href = "#";
+                editButton.className = "btn btn-success disabled";
             } else {
                 msgError.className = "d-none";
+                editButton.className = "btn btn-success";
                 let newURL = '<?php echo site_url('update_product_from_car/'); ?>' + product_id + '/' + value;
                 editButton.setAttribute('href', newURL);
             }
