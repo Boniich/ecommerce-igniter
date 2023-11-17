@@ -10,7 +10,7 @@ class Shopping_car_model extends CI_Model
 
     public function get_product_in_shopping_car($client_id)
     {
-        $select_query_data = 'p.id,p.name,p.price,s.product_amount';
+        $select_query_data = 'p.id,p.name,p.price,p.stock,s.product_amount';
         $get_total_x_product = 'SUM(p.price*s.product_amount) as total_x_product';
 
         $query = $this->db->select($select_query_data . ',' . $get_total_x_product)
@@ -97,6 +97,21 @@ class Shopping_car_model extends CI_Model
     public function add_product_to_car($data)
     {
         if ($this->db->insert('shopping_car', $data)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function update_product_from_shopping_car($data)
+    {
+        $client_id = $data['client_id'];
+        $product_id = $data['product_id'];
+        $produc_amount = $data['product_amount'];
+
+        $newData = array('client_id' => $client_id, 'product_id' => $product_id, 'product_amount' => $produc_amount);
+        $is_updated = $this->db->where('client_id', $client_id)->where('product_id', $product_id)->update('shopping_car', $newData);
+        if ($is_updated) {
             return true;
         } else {
             return false;
