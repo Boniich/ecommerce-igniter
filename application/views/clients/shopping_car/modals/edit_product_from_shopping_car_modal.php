@@ -7,10 +7,11 @@
             </div>
             <div class="modal-body">
                 <td>
-                    <label>Cambia la cantidad solicitada del producto:</label>
+
                     <div>
                         <p> Stock disponible: <b id="stock"></b> </p>
                     </div>
+                    <label>Cantidad solicitada:</label>
                     <input type="number" id="amount-shopping" name="amount-shopping" min="1">
                     <small class="d-none" id="error-msg-input-amount">El valor debe ser entre 1 y el STOCK disponible</small>
                 </td>
