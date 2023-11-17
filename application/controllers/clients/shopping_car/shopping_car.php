@@ -26,6 +26,7 @@ class Shopping_car extends CI_Controller
         $this->load->view('head/head', $data);
         $this->load->view('navs/modals/exit_modal');
         $this->load->view('clients/shopping_car/modals/delete_product_from_shopping_car_model');
+        $this->load->view('clients/shopping_car/modals/edit_product_from_shopping_car_modal');
         $this->get_nav();
         $this->load->view('feedback/successfully_alert');
         $this->load->view('feedback/error_alert');
@@ -118,6 +119,23 @@ class Shopping_car extends CI_Controller
         if ($this->session->role === "client") {
             $data['client'] = $this->_get_client_data();
             $this->load->view('navs/client_nav/client_nav', $data);
+        }
+    }
+
+    public function update_product_from_shopping_car($product_id, $product_amount)
+    {
+        $data = array(
+            'client_id' => $this->session->id,
+            'product_id' => $product_id,
+            'product_amount' => $product_amount
+        );
+
+        if ($this->shopping_car_model->update_product_from_shopping_car($data)) {
+            $this->session->set_flashdata('sucessfully_alert', 'Producto actualizado con exito');
+            redirect('shopping_car');
+        } else {
+            $this->session->set_flashdata('error_alert', 'Ups! Algo salio mal! No pudimos actualizar el producto de tu carrito');
+            redirect('shopping_car');
         }
     }
 
