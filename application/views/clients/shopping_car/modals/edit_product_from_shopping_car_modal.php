@@ -38,12 +38,11 @@
         let input = document.getElementById("amount-shopping");
         input.value = product_amount;
         input.max = product_stock;
-        console.log(input.value);
 
         let stock = document.getElementById("stock");
         stock.innerHTML = product_stock;
 
-        let evento = input.addEventListener('change', (e) => {
+        input.addEventListener('change', (e) => {
             console.log(e.target.value);
             let input = e.target;
             let msgError = document.getElementById("error-msg-input-amount");
@@ -66,5 +65,15 @@
         let newURL = '<?php echo site_url('update_product_from_car/'); ?>' + product_id + '/' + input.value;
         editButton.setAttribute('href', newURL);
 
+    });
+    modal.addEventListener('show.bs.modal', function(event) {
+
+        let button = event.relatedTarget
+
+        let msgError = document.getElementById("error-msg-input-amount");
+        msgError.className = "d-none";
+
+        let editButton = document.getElementById('editProductFromCar');
+        editButton.className = "btn btn-success";
     });
 </script>
