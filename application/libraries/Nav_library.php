@@ -38,7 +38,7 @@ class Nav_library
 
     public function load_common_nav()
     {
-        $this->unauthenticated_nav();
+        $this->load_unauthenticated_nav();
         $this->load_client_nav();
         $this->load_admin_nav();
     }
