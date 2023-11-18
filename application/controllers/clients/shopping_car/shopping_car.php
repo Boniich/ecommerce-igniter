@@ -7,9 +7,9 @@ class Shopping_car extends CI_Controller
     {
         parent::__construct();
         $this->load->helper('url_helper');
-        $this->load->model('clients/client_data_model');
         $this->load->model('clients/shopping_car/shopping_car_model');
         $this->load->library('session');
+        $this->load->library('nav_library');
 
         if (!$this->session->login_in) {
             redirect('client_login');
@@ -27,7 +27,7 @@ class Shopping_car extends CI_Controller
         $this->load->view('navs/modals/exit_modal');
         $this->load->view('clients/shopping_car/modals/delete_product_from_shopping_car_model');
         $this->load->view('clients/shopping_car/modals/edit_product_from_shopping_car_modal');
-        $this->get_nav();
+        $this->nav_library->load_client_nav();
         $this->load->view('feedback/successfully_alert');
         $this->load->view('feedback/error_alert');
         $this->show_shopping_car_view($is_there_products);
@@ -105,21 +105,6 @@ class Shopping_car extends CI_Controller
     {
         $this->session->set_flashdata('error_alert', 'Ups! Algo salio mal! No pudimos agregar tu producto');
         redirect('product/' . $product_id);
-    }
-
-    private function _get_client_data()
-    {
-        $id = $this->session->id;
-        $data = $this->client_data_model->get_client($id);
-        return $data;
-    }
-
-    function get_nav()
-    {
-        if ($this->session->role === "client") {
-            $data['client'] = $this->_get_client_data();
-            $this->load->view('navs/client_nav/client_nav', $data);
-        }
     }
 
     public function update_product_from_shopping_car($product_id, $product_amount)
