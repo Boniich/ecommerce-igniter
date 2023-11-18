@@ -15,7 +15,9 @@ class Nav_library
 
     public function unauthenticated_nav()
     {
-        $this->CI->load->view('navs/unauthenticated_nav/unauthenticated_nav');
+        if (!$this->CI->session->login_in) {
+            $this->CI->load->view('navs/unauthenticated_nav/unauthenticated_nav');
+        }
     }
 
     public function load_client_nav()
