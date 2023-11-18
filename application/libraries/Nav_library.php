@@ -26,10 +26,25 @@ class Nav_library
         }
     }
 
+    public function load_admin_nav()
+    {
+        if ($this->CI->session->role === "admin") {
+            $data['admin'] = $this->_get_admin_data();
+            $this->CI->load->view('navs/admin_nav/admin_nav', $data);
+        }
+    }
+
     private function _get_client_data()
     {
         $id = $this->CI->session->id;
         $data = $this->CI->client_data_model->get_client($id);
+        return $data;
+    }
+
+    private function _get_admin_data()
+    {
+        $id = $this->CI->session->id;
+        $data = $this->CI->admin_data_model->get_admin($id);
         return $data;
     }
 }
