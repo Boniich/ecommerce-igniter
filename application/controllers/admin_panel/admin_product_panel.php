@@ -11,8 +11,8 @@ class Admin_product_panel extends CI_Controller
         $this->load->helper('form');
         $this->load->helper('url_helper');
         $this->load->model('admin_panel/products/admin_product_model');
-        $this->load->model('admin_panel/admin_data_model');
         $this->load->library('session');
+        $this->load->library('nav_library');
 
         if (!$this->session->login_in) {
             redirect('admin_login');
@@ -25,9 +25,8 @@ class Admin_product_panel extends CI_Controller
     {
         $data['title'] = 'Admin Panel - Productos';
         $data['products'] = $this->admin_product_model->get_all_products();
-        $data['admin'] = $this->_get_admin_data();
         $this->load->view('head/head', $data);
-        $this->load->view('navs/admin_nav/admin_nav');
+        $this->nav_library->load_admin_nav();
         $this->load->view('navs/modals/exit_modal');
         $this->load->view('admin_panel/products/admin_products_index');
         $this->load->view('feedback/successfully_alert');
@@ -54,10 +53,9 @@ class Admin_product_panel extends CI_Controller
     {
         $data['product'] = $this->admin_product_model->get_one_product($id);
         $data['title'] = $data['product'][0]['name'];
-        $data['admin'] = $this->_get_admin_data();
         $data['id'] = $id;
         $this->load->view('head/head', $data);
-        $this->load->view('navs/admin_nav/admin_nav');
+        $this->nav_library->load_admin_nav();
         $this->load->view('navs/modals/exit_modal');
         $this->load->view('admin_panel/products/product_details/show_product_index');
         $this->load->view('admin_panel/products/product_details/show_product_details');
@@ -142,12 +140,5 @@ class Admin_product_panel extends CI_Controller
             $image = 'products/' . $this->upload->data('file_name');
             return $image;
         }
-    }
-
-    private function _get_admin_data()
-    {
-        $id = $this->session->id;
-        $data = $this->admin_data_model->get_admin($id);
-        return $data;
     }
 }
