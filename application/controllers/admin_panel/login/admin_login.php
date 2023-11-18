@@ -18,7 +18,7 @@ class Admin_login extends CI_Controller
 
         $data['title'] = 'Ingreso de Admin';
         $this->load->view('head/head', $data);
-        $this->nav_library->unauthenticated_nav();
+        $this->nav_library->load_unauthenticated_nav();
         $this->load->view('auth/admin_auth/admin_login');
     }
 
@@ -37,7 +37,7 @@ class Admin_login extends CI_Controller
             $data['error_message'] = 'Email o contraseña incorrectas!';
             $data['title'] = 'Ingreso de Admin';
             $this->load->view('head/head', $data);
-            $this->nav_library->unauthenticated_nav();
+            $this->nav_library->load_unauthenticated_nav();
             $this->load->view('auth/admin_auth/admin_login', $data);
         }
     }

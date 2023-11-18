@@ -25,7 +25,7 @@ class Client_register extends CI_Controller
     {
         $data['title'] = 'Registro de clientes';
         $this->load->view('head/head', $data);
-        $this->nav_library->unauthenticated_nav();
+        $this->nav_library->load_unauthenticated_nav();
         $this->load->view('auth/client_auth/client_register');
     }
 
@@ -67,7 +67,7 @@ class Client_register extends CI_Controller
         $data['error_message'] = 'Uno o mas campos requeridos estan vacios!';
         $data['title'] = 'Registro de clientes';
         $this->load->view('head/head', $data);
-        $this->nav_library->unauthenticated_nav();
+        $this->nav_library->load_unauthenticated_nav();
         $this->load->view('auth/client_auth/client_register', $data);
         return false;
     }
@@ -77,7 +77,7 @@ class Client_register extends CI_Controller
         $data['error_message'] = 'Este email ya esta registrado! Intenta con otro!';
         $data['title'] = 'Registro de clientes';
         $this->load->view('head/head', $data);
-        $this->nav_library->unauthenticated_nav();
+        $this->nav_library->load_unauthenticated_nav();
         $this->load->view('auth/client_auth/client_register', $data);
         return false;
     }
@@ -87,7 +87,7 @@ class Client_register extends CI_Controller
         $data['error_message'] = 'Este DNI ya esta registrado';
         $data['title'] = 'Registro de clientes';
         $this->load->view('head/head', $data);
-        $this->nav_library->unauthenticated_nav();
+        $this->nav_library->load_unauthenticated_nav();
         $this->load->view('auth/client_auth/client_register', $data);
         return false;
     }
