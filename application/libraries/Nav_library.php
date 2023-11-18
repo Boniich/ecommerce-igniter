@@ -34,6 +34,13 @@ class Nav_library
         }
     }
 
+    public function load_common_nav()
+    {
+        $this->unauthenticated_nav();
+        $this->load_client_nav();
+        $this->load_admin_nav();
+    }
+
     private function _get_client_data()
     {
         $id = $this->CI->session->id;
