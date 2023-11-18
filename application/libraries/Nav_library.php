@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Nav_library
 {
-    protected $CI;
+    protected CI_Controller $CI;
 
     public function __construct()
     {
