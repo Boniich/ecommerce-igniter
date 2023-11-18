@@ -13,7 +13,7 @@ class Nav_library
         $this->CI->load->library('session');
     }
 
-    public function unauthenticated_nav()
+    public function load_unauthenticated_nav()
     {
         if (!$this->CI->session->login_in) {
             $this->CI->load->view('navs/unauthenticated_nav/unauthenticated_nav');
