@@ -9,6 +9,7 @@ class Client_login extends CI_Controller
         $this->load->helper('url_helper');
         $this->load->model('clients/auth/client_login_model');
         $this->load->library('session');
+        $this->load->library('nav_library');
     }
 
     public function index()
@@ -17,7 +18,7 @@ class Client_login extends CI_Controller
 
         $data['title'] = 'Ingreso de Clientes';
         $this->load->view('head/head', $data);
-        $this->load->view('navs/unauthenticated_nav/unauthenticated_nav');
+        $this->nav_library->unauthenticated_nav();
         $this->load->view('auth/client_auth/client_login');
     }
 
@@ -36,7 +37,7 @@ class Client_login extends CI_Controller
             $data['error_message'] = 'Email o contraseña incorrectas!';
             $data['title'] = 'Ingreso de Clientes';
             $this->load->view('head/head', $data);
-            $this->load->view('navs/unauthenticated_nav/unauthenticated_nav');
+            $this->nav_library->unauthenticated_nav();
             $this->load->view('auth/client_auth/client_login');
         }
     }
