@@ -11,14 +11,9 @@ class Client_register extends CI_Controller
         $this->load->helper('url_helper');
         $this->load->model('clients/auth/client_register_model');
         $this->load->model('clients/auth/client_login_model');
-        $this->load->library('session');
+        $this->load->library('sessions/sessions_library');
         $this->load->library('nav_library');
-
-        if ($this->session->login_in && $this->session->role === 'admin') {
-            redirect('admin_panel/products');
-        } else if ($this->session->login_in && $this->session->role === 'client') {
-            redirect('products');
-        }
+        $this->_check_auth();
     }
 
     public function index()
@@ -36,7 +31,8 @@ class Client_register extends CI_Controller
         if ($is_data_valid) {
             if ($this->client_register_model->register($this->userData)) {
                 if ($this->client_login_model->login($this->userData['email'], $this->userData['password'])) {
-                    $this->_set_auth_data();
+                    $id = $this->client_login_model->_get_client_id();
+                    $this->sessions_library->authenticate_client($id);
                     redirect('products');
                 }
             }
@@ -92,10 +88,12 @@ class Client_register extends CI_Controller
         return false;
     }
 
-    private function _set_auth_data()
+    private function _check_auth()
     {
-        $id = $this->client_login_model->_get_client_id();
-        $auth_data = array('id' => $id, 'login_in' => true, 'role' => 'client');
-        $this->session->set_userdata($auth_data);
+        if ($this->sessions_library->check_admin_role()) {
+            redirect('admin_panel/products');
+        } else if ($this->sessions_library->check_client_role()) {
+            redirect('products');
+        }
     }
 }
