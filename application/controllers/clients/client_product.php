@@ -9,7 +9,6 @@ class Client_product extends CI_Controller
         $this->load->helper('form');
         $this->load->helper('url_helper');
         $this->load->model('clients/client_product_model');
-        $this->load->library('session');
         $this->load->library('nav_library');
     }
 

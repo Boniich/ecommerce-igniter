@@ -9,7 +9,6 @@ class Home extends CI_Controller
         $this->load->helper('form');
         $this->load->helper('url_helper');
         $this->load->model('home/home_product_model');
-        $this->load->library('session');
         $this->load->library('nav_library');
     }
 
