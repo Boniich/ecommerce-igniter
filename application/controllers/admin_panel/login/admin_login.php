@@ -8,7 +8,7 @@ class Admin_login extends CI_Controller
         $this->load->helper('form');
         $this->load->helper('url_helper');
         $this->load->model('admin_panel/auth/admin_login_model');
-        $this->load->library('session');
+        $this->load->library('sessions/sessions_library');
         $this->load->library('nav_library');
     }
 
@@ -31,7 +31,7 @@ class Admin_login extends CI_Controller
 
         if ($this->admin_login_model->login($email, $password)) {
             $id = $this->admin_login_model->get_admin_id();
-            $this->_set_auth_data($id);
+            $this->sessions_library->authenticate_admin($id);
             redirect('admin_panel/products');
         } else {
             $data['error_message'] = 'Email o contraseña incorrectas!';
@@ -42,15 +42,9 @@ class Admin_login extends CI_Controller
         }
     }
 
-    private function _set_auth_data($id)
-    {
-        $auth_data = array('id' => $id, 'login_in' => true, 'role' => 'admin');
-        $this->session->set_userdata($auth_data);
-    }
-
     public function logout()
     {
-        if ($this->session->login_in && $this->session->role === 'admin') {
+        if ($this->sessions_library->check_login_in() && $this->sessions_library->check_admin_role()) {
             session_destroy();
             redirect('admin_login');
         } else {
@@ -60,7 +54,7 @@ class Admin_login extends CI_Controller
 
     private function _check_auth()
     {
-        if ($this->session->login_in) {
+        if ($this->sessions_library->check_login_in()) {
             redirect('admin_panel/products');
         }
     }
