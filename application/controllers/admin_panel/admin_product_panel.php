@@ -12,13 +12,9 @@ class Admin_product_panel extends CI_Controller
         $this->load->helper('url_helper');
         $this->load->model('admin_panel/products/admin_product_model');
         $this->load->library('session');
+        $this->load->library('sessions/sessions_library');
         $this->load->library('nav_library');
-
-        if (!$this->session->login_in) {
-            redirect('admin_login');
-        } else if ($this->session->login_in && $this->session->role != 'admin') {
-            redirect('products');
-        }
+        $this->_check_auth();
     }
 
     public function index()
@@ -139,6 +135,15 @@ class Admin_product_panel extends CI_Controller
         if ($this->upload->do_upload('image')) {
             $image = 'products/' . $this->upload->data('file_name');
             return $image;
+        }
+    }
+
+    private function _check_auth()
+    {
+        if (!$this->sessions_library->check_login_in()) {
+            redirect('admin_login');
+        } else if ($this->sessions_library->check_login_in() && !$this->sessions_library->check_admin_role()) {
+            redirect('products');
         }
     }
 }

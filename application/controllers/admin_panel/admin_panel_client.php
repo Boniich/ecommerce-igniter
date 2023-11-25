@@ -11,13 +11,9 @@ class Admin_panel_client extends CI_Controller
         $this->load->helper('url_helper');
         $this->load->model('admin_panel/clients/admin_client_model');
         $this->load->library('session');
+        $this->load->library('sessions/sessions_library');
         $this->load->library('nav_library');
-
-        if (!$this->session->login_in) {
-            redirect('admin_login');
-        } else if ($this->session->login_in && $this->session->role != 'admin') {
-            redirect('products');
-        }
+        $this->_check_auth();
     }
 
     public function index()
@@ -169,5 +165,14 @@ class Admin_panel_client extends CI_Controller
     {
         $this->session->set_flashdata('error_alert', 'El DNI ya esta registrado. Intenta con otro');
         redirect('admin_panel/clients');
+    }
+
+    private function _check_auth()
+    {
+        if (!$this->sessions_library->check_login_in()) {
+            redirect('admin_login');
+        } else if ($this->sessions_library->check_login_in() && !$this->sessions_library->check_admin_role()) {
+            redirect('products');
+        }
     }
 }
