@@ -11,6 +11,11 @@ class Sessions_library
         $this->CI->load->library('session');
     }
 
+    public function get_user_id()
+    {
+        return $this->CI->session->id;
+    }
+
     public function authenticate_admin($id): void
     {
         $data = array('id' => $id, 'login_in' => true, 'role' => 'admin');
