@@ -61,7 +61,7 @@ class Pagination_library
         $config['first_tag_open'] = '<li class="page-item"><span class="page-link">';
         $config['first_tagl_close'] = '</span></li>';
 
-        $config['last_tag_open'] = '<li class="page-item">';
+        $config['last_tag_open'] = '<li class="page-item"><span class="page-link">';
         $config['last_tagl_close'] = '</li>';
 
         $config['next_link'] = 'Next';
