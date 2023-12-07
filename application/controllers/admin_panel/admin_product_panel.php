@@ -4,6 +4,10 @@ class Admin_product_panel extends CI_Controller
 {
 
     private string $_path_view_folder = 'admin_panel/products/';
+    private string $base_url;
+    private int $per_page;
+    private int $page;
+    private int $count_products = 0;
 
     public function __construct()
     {
@@ -14,13 +18,20 @@ class Admin_product_panel extends CI_Controller
         $this->load->library('session');
         $this->load->library('sessions/sessions_library');
         $this->load->library('nav_library');
+        $this->load->library('pagination/pagination_library');
+
+        $this->base_url = 'http://localhost/ecommerceIgniter/admin_panel/admin_product_panel/index/';
+        $this->pagination_library->set_base_url($this->base_url);
         $this->_check_auth();
     }
 
     public function index()
     {
+        $this->_initiate_pagination();
+
         $data['title'] = 'Admin Panel - Productos';
-        $data['products'] = $this->admin_product_model->get_all_products();
+        $data['products'] = $this->admin_product_model->get_products($this->per_page, $this->page);
+        $data['links'] = $this->pagination_library->get_links();
         $this->load->view('head/head', $data);
         $this->nav_library->load_admin_nav();
         $this->load->view('navs/modals/exit_modal');
@@ -145,5 +156,14 @@ class Admin_product_panel extends CI_Controller
         } else if ($this->sessions_library->check_login_in() && !$this->sessions_library->check_admin_role()) {
             redirect('products');
         }
+    }
+
+    private function _initiate_pagination()
+    {
+        $this->pagination_library->set_uri_segment(4);
+        $this->count_products = $this->admin_product_model->count_products();
+        $this->pagination_library->set_pagination_config($this->count_products);
+        $this->per_page = $this->pagination_library->get_per_page();
+        $this->page = $this->pagination_library->get_uri_segment();
     }
 }
