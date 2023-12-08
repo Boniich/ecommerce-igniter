@@ -8,14 +8,14 @@ class Shopping_car_model extends CI_Model
         $this->load->database();
     }
 
-    public function get_product_in_shopping_car($client_id)
+    public function get_product_in_shopping_car($client_id, $limit, $page)
     {
         $select_query_data = 'p.id,p.name,p.price,p.stock,s.product_amount';
         $get_total_x_product = 'SUM(p.price*s.product_amount) as total_x_product';
 
         $query = $this->db->select($select_query_data . ',' . $get_total_x_product)
             ->from('products p')->join('shopping_car s', 's.product_id = p.id')
-            ->where('client_id', $client_id)->group_by('s.product_id')->get();
+            ->where('client_id', $client_id)->group_by('s.product_id')->limit($limit, $page)->get();
 
         $result = $query->result_array();
         return $result;
@@ -127,5 +127,10 @@ class Shopping_car_model extends CI_Model
         } else {
             return false;
         }
+    }
+
+    public function count_products_by_client($client_id)
+    {
+        return $this->db->where('client_id', $client_id)->count_all_results('shopping_car');
     }
 }
