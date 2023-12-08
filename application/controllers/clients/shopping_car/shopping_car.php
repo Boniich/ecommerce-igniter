@@ -2,6 +2,9 @@
 
 class Shopping_car extends CI_Controller
 {
+    private string $base_url;
+    private int $per_page;
+    private int $page;
 
     public function __construct()
     {
@@ -11,6 +14,10 @@ class Shopping_car extends CI_Controller
         $this->load->library('session');
         $this->load->library('sessions/sessions_library');
         $this->load->library('nav_library');
+        $this->load->library('pagination/pagination_library');
+
+        $this->base_url = 'http://localhost/ecommerceIgniter/clients/shopping_car/shopping_car/index/';
+        $this->pagination_library->set_base_url($this->base_url);
         $this->_check_auth();
     }
 
@@ -19,6 +26,7 @@ class Shopping_car extends CI_Controller
     {
         $data['title'] = 'Carrito de compras';
         $is_there_products = $this->shopping_car_model->is_there_products_in_shopping_car($this->sessions_library->get_user_id());
+
         $this->load->view('head/head', $data);
         $this->load->view('navs/modals/exit_modal');
         $this->load->view('clients/shopping_car/modals/delete_product_from_shopping_car_model');
@@ -33,8 +41,10 @@ class Shopping_car extends CI_Controller
     {
         $this->load->view('clients/shopping_car/shopping_car_index');
         if ($is_there_products) {
-            $data['products_in_car'] = $this->shopping_car_model->get_product_in_shopping_car($this->sessions_library->get_user_id());
+            $this->_initiate_pagination();
+            $data['products_in_car'] = $this->shopping_car_model->get_product_in_shopping_car($this->sessions_library->get_user_id(), $this->per_page, $this->page);
             $data['total'] = $this->shopping_car_model->get_total_to_pay_by_shopping_car($this->sessions_library->get_user_id());
+            $data['links'] = $this->pagination_library->get_links();
             $this->load->view('clients/shopping_car/shopping_car_list', $data);
         } else {
             $this->load->view('clients/shopping_car/feedback/show_msg_not_products_in_car');
@@ -138,5 +148,14 @@ class Shopping_car extends CI_Controller
         } else if (!$this->sessions_library->check_client_role()) {
             redirect('products');
         }
+    }
+
+    private function _initiate_pagination()
+    {
+        $this->pagination_library->set_uri_segment(5);
+        $count_products = $this->shopping_car_model->count_products_by_client($this->sessions_library->get_user_id());
+        $this->pagination_library->set_pagination_config($count_products);
+        $this->per_page = $this->pagination_library->get_per_page();
+        $this->page = $this->pagination_library->get_uri_segment();
     }
 }
