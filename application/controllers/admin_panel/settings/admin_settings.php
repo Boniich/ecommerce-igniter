@@ -22,6 +22,14 @@ class Admin_settings extends CI_Controller
         $this->load->view('admin_panel/settings/admin/admin_settings_view');
     }
 
+    public function index_password()
+    {
+        $data['title'] = 'Ajustes - Password';
+        $this->load->view('head/head', $data);
+        $this->nav_library->load_admin_nav();
+        $this->load->view('admin_panel/settings/admin/admin_settings_password_view');
+    }
+
     private function _check_auth()
     {
         if (!$this->sessions_library->check_login_in()) {
