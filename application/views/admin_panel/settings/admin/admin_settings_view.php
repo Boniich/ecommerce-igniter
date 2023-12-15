@@ -19,7 +19,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
             <div class="w-50 bg-light shadow p-3 mb-5 bg-body rounded border border-secondary rounded-3">
                 <?php foreach ($admin_data as $data) : ?>
-                    <?php echo form_open('do_client_register'); ?>
+                    <?php echo form_open('admin_settings/profile/update_admin_profile'); ?>
                     <div class="col mb-3">
                         <?php if ($data['image'] == NULL || $data['image'] == '') {
                             $image = './assets/image-profile.png';
