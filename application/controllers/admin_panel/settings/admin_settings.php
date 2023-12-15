@@ -19,7 +19,7 @@ class Admin_settings extends CI_Controller
         $data['title'] = 'Ajustes';
         $this->load->view('head/head', $data);
         $this->nav_library->load_admin_nav();
-        $this->load->view('admin_panel/settings/admin_settings_view');
+        $this->load->view('admin_panel/settings/admin/admin_settings_view');
     }
 
     private function _check_auth()
