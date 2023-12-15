@@ -23,6 +23,7 @@ class Admin_settings extends CI_Controller
         $this->load->view('head/head', $data);
         $this->nav_library->load_admin_nav();
         $this->load->view('feedback/successfully_alert');
+        $this->load->view('feedback/error_alert');
         $this->load->view('admin_panel/settings/admin/admin_settings_view');
     }
 
@@ -32,6 +33,7 @@ class Admin_settings extends CI_Controller
         $this->load->view('head/head', $data);
         $this->nav_library->load_admin_nav();
         $this->load->view('feedback/successfully_alert');
+        $this->load->view('feedback/error_alert');
         $this->load->view('admin_panel/settings/admin/admin_settings_password_view');
     }
 
@@ -40,6 +42,11 @@ class Admin_settings extends CI_Controller
         $id = $this->sessions_library->get_user_id();
         $full_name = $this->input->post('full_name');
         $email = $this->input->post('email');
+
+        if ($this->admin_data_model->check_email($id, $email)) {
+            $this->session->set_flashdata('error_alert', 'El email que has ingresado ya se encuentra en uso!');
+            redirect('admin_settings/profile');
+        }
 
         if (empty($_FILES['profile_image']['name'])) {
             $data = array(
