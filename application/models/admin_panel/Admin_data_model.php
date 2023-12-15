@@ -6,7 +6,7 @@ class Admin_data_model extends CI_Model
 
     public function get_admin($id)
     {
-        $this->db->select('full_name, image')->where('id', $id);
+        $this->db->select('full_name, image, email')->where('id', $id);
         $query = $this->db->get($this->_table);
 
         $result = $query->result_array();
