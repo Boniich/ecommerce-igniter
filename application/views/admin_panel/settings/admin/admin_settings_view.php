@@ -13,8 +13,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <div class="container d-flex flex-column justify-content-center align-items-center">
 
             <div class="mb-5">
-                <a href="#">Perfil</a>
-                <a href="#">Contraseña</a>
+                <a href="<?php echo base_url('admin_settings/profile'); ?>" class="btn btn-outline-primary">Perfil</a>
+                <a href="#" class="btn btn-outline-primary">Contraseña</a>
             </div>
 
             <div class="w-50 bg-light shadow p-3 mb-5 bg-body rounded border border-secondary rounded-3">
