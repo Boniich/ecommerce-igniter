@@ -10,6 +10,7 @@ class Admin_settings extends CI_Controller
         $this->load->helper('url_helper');
         $this->load->library('sessions/sessions_library');
         $this->load->library('nav_library');
+        $this->load->model('admin_panel/admin_data_model');
 
         $this->_check_auth();
     }
@@ -17,6 +18,7 @@ class Admin_settings extends CI_Controller
     public function index()
     {
         $data['title'] = 'Ajustes';
+        $data['admin_data'] = $this->admin_data_model->get_admin($this->sessions_library->get_user_id());
         $this->load->view('head/head', $data);
         $this->nav_library->load_admin_nav();
         $this->load->view('admin_panel/settings/admin/admin_settings_view');
