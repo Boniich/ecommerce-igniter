@@ -25,7 +25,7 @@ class Admin_settings extends CI_Controller
         $this->load->view('navs/modals/exit_modal');
         $this->load->view('feedback/successfully_alert');
         $this->load->view('feedback/error_alert');
-        $this->load->view('admin_panel/settings/admin/admin_settings_view');
+        $this->load->view('admin_panel/settings/admin/admin_settings_profile_view');
     }
 
     public function index_password()
