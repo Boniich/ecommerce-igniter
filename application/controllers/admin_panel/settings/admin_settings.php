@@ -54,14 +54,7 @@ class Admin_settings extends CI_Controller
                 'email' => $email,
             );
         } else {
-            // $this->_delete_actual_image($id);
             $image = $this->_do_upload();
-
-            if (!$image) {
-                $this->session->set_flashdata('error_alert', 'Ups! No pudimos cargar la imagen');
-                redirect('admin_settings/profile');
-            }
-
             $data = array(
                 'full_name' => $full_name,
                 'email' => $email,
@@ -92,6 +85,7 @@ class Admin_settings extends CI_Controller
         $config['upload_path'] = './uploads/' . $folder_name;
         $config['allowed_types'] = 'jpg|png';
         $config['file_name'] = 'admin-profile-image-id-' . $id;
+        $config['overwrite'] = TRUE;
         $config['max_width'] = 1000;
         $config['max_height'] = 1000;
 
@@ -101,7 +95,8 @@ class Admin_settings extends CI_Controller
             $image = $folder_name . '/' . $this->upload->data('file_name');
             return $image;
         } else {
-            return false;
+            $this->session->set_flashdata('error_alert', 'Ups! No pudimos cargar la imagen');
+            redirect('admin_settings/profile');
         }
     }
 }
