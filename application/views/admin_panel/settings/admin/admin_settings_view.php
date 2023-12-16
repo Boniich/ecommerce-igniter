@@ -35,11 +35,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     </div>
                     <div class="col mb-3">
                         <label for="full_name" class="form-label">Nombre completo</label>
-                        <input type="text" name="full_name" class="form-control" id="full_name" value="<?php echo $data['full_name'] ?>" required>
+                        <input type="text" name="full_name" class="form-control" id="full_name" value="<?php echo $data['full_name'] ?>" max="70" required>
                     </div>
                     <div class="col">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" name="email" class="form-control" id="email" value="<?php echo $data['email'] ?>" required>
+                        <input type="email" name="email" class="form-control" id="email" value="<?php echo $data['email'] ?>" max="70" required>
                     </div>
 
                     <div class=" col mt-4">
