@@ -8,6 +8,7 @@ class Admin_login extends CI_Controller
         $this->load->helper('form');
         $this->load->helper('url_helper');
         $this->load->model('admin_panel/auth/admin_login_model');
+        $this->load->model('admin_panel/admin_data_model');
         $this->load->library('sessions/sessions_library');
         $this->load->library('nav_library');
     }
@@ -29,12 +30,22 @@ class Admin_login extends CI_Controller
         $email = $this->input->post('email');
         $password = $this->input->post('password');
 
-        if ($this->admin_login_model->login($email, $password)) {
-            $id = $this->admin_login_model->get_admin_id();
-            $this->sessions_library->authenticate_admin($id);
-            redirect('admin_panel/products');
+        if ($this->admin_login_model->login($email)) {
+
+            $actual_password = $this->admin_login_model->get_hashed_password();
+            if (password_verify($password, $actual_password)) {
+                $id = $this->admin_login_model->get_admin_id();
+                $this->sessions_library->authenticate_admin($id);
+                redirect('admin_panel/products');
+            } else {
+                $data['error_message'] = 'La Contraseña es incorrecta';
+                $data['title'] = 'Ingreso de Admin';
+                $this->load->view('head/head', $data);
+                $this->nav_library->load_unauthenticated_nav();
+                $this->load->view('auth/admin_auth/admin_login', $data);
+            }
         } else {
-            $data['error_message'] = 'Email o contraseña incorrectas!';
+            $data['error_message'] = 'Email es incorrecto';
             $data['title'] = 'Ingreso de Admin';
             $this->load->view('head/head', $data);
             $this->nav_library->load_unauthenticated_nav();
