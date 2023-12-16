@@ -18,7 +18,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
             </div>
 
             <div class="w-50 bg-light shadow p-3 mb-5 bg-body rounded border border-secondary rounded-3">
-                <?php echo form_open('do_client_register'); ?>
+                <?php echo form_open('admin_settings/password/update_admin_password'); ?>
                 <div class="col mb-3">
                     <label for="full_name" class="form-label">Contraseña actual</label>
                     <input type="text" name="old_password" class="form-control" id="full_name" required>
