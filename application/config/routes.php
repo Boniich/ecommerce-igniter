@@ -89,6 +89,8 @@ $route['delete_client/(:num)'] = 'admin_panel/admin_panel_client/delete_client/$
 $route['admin_settings/profile'] = 'admin_panel/settings/admin_settings/index';
 $route['admin_settings/profile/update_admin_profile'] = 'admin_panel/settings/admin_settings/update_admin_profile';
 $route['admin_settings/password'] = 'admin_panel/settings/admin_settings/index_password';
+$route['admin_settings/password/update_admin_password'] = 'admin_panel/settings/admin_settings/update_admin_password';
+
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
