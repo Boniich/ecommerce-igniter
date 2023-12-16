@@ -19,15 +19,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
             <div class="w-50 bg-light shadow p-3 mb-5 bg-body rounded border border-secondary rounded-3">
                 <?php foreach ($admin_data as $data) : ?>
-                    <?php echo form_open('admin_settings/profile/update_admin_profile'); ?>
-                    <div class="col mb-3">
+                    <?php echo form_open_multipart('admin_settings/profile/update_admin_profile'); ?>
+                    <div class="d-flex mb-3">
                         <?php if ($data['image'] == NULL || $data['image'] == '') {
                             $image = './assets/image-profile.png';
                         } else {
                             $image = './uploads/' . $data['image'];
                         } ?>
                         <img src="<?php echo base_url($image); ?>" class="rounded-circle" width="100" height="100"></img>
-                        <input type="file" name="profile_image" accept="image/png, image/jpeg" />
+
+                        <div class="row ps-3 h-25">
+                            <input class="pb-2" type="file" name="image" accept="image/png, image/jpeg" />
+                            <small class="text-danger">Max anchura/altura: 1000 px</small>
+                        </div>
                     </div>
                     <div class="col mb-3">
                         <label for="full_name" class="form-label">Nombre completo</label>
