@@ -48,10 +48,24 @@ class Admin_settings extends CI_Controller
             redirect('admin_settings/profile');
         }
 
-        if (empty($_FILES['profile_image']['name'])) {
+        if (empty($_FILES['image']['name'])) {
             $data = array(
                 'full_name' => $full_name,
                 'email' => $email,
+            );
+        } else {
+            // $this->_delete_actual_image($id);
+            $image = $this->_do_upload();
+
+            if (!$image) {
+                $this->session->set_flashdata('error_alert', 'Ups! No pudimos cargar la imagen');
+                redirect('admin_settings/profile');
+            }
+
+            $data = array(
+                'full_name' => $full_name,
+                'email' => $email,
+                'image' => $image,
             );
         }
 
@@ -67,6 +81,27 @@ class Admin_settings extends CI_Controller
             redirect('admin_login');
         } else if ($this->sessions_library->check_login_in() && !$this->sessions_library->check_admin_role()) {
             redirect('products');
+        }
+    }
+
+    private function _do_upload()
+    {
+        $folder_name = 'admin/profile_image';
+        $id = $this->sessions_library->get_user_id();
+
+        $config['upload_path'] = './uploads/' . $folder_name;
+        $config['allowed_types'] = 'jpg|png';
+        $config['file_name'] = 'admin-profile-image-id-' . $id;
+        $config['max_width'] = 1000;
+        $config['max_height'] = 1000;
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('image')) {
+            $image = $folder_name . '/' . $this->upload->data('file_name');
+            return $image;
+        } else {
+            return false;
         }
     }
 }
