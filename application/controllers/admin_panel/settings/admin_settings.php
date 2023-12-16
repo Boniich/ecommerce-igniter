@@ -22,6 +22,7 @@ class Admin_settings extends CI_Controller
         $data['admin_data'] = $this->admin_data_model->get_admin($this->sessions_library->get_user_id());
         $this->load->view('head/head', $data);
         $this->nav_library->load_admin_nav();
+        $this->load->view('navs/modals/exit_modal');
         $this->load->view('feedback/successfully_alert');
         $this->load->view('feedback/error_alert');
         $this->load->view('admin_panel/settings/admin/admin_settings_view');
@@ -32,6 +33,7 @@ class Admin_settings extends CI_Controller
         $data['title'] = 'Ajustes - Password';
         $this->load->view('head/head', $data);
         $this->nav_library->load_admin_nav();
+        $this->load->view('navs/modals/exit_modal');
         $this->load->view('feedback/successfully_alert');
         $this->load->view('feedback/error_alert');
         $this->load->view('admin_panel/settings/admin/admin_settings_password_view');
