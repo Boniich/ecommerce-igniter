@@ -31,6 +31,7 @@ class Admin_settings extends CI_Controller
     {
         $data['title'] = 'Ajustes - Password';
         $this->load->view('head/head', $data);
+        // $this->update_admin_password();
         $this->nav_library->load_admin_nav();
         $this->load->view('feedback/successfully_alert');
         $this->load->view('feedback/error_alert');
@@ -66,6 +67,20 @@ class Admin_settings extends CI_Controller
             $this->session->set_flashdata('sucessfully_alert', 'Informacion de perfil actualizada');
             redirect('admin_settings/profile');
         }
+    }
+
+    public function update_admin_password()
+    {
+        $id = $this->sessions_library->get_user_id();
+        // $old_passwrod = $this->input->post('old_password');
+        // $new_password = $this->input->post('new_password');
+        // $confirm_new_password = $this->input->post('confirm_new_password');
+
+        //comprobar que la contraseña actual, coincide lo ingresado con lo que este en base de datos
+
+        $passwrod = $this->admin_data_model->get_old_password($this->sessions_library->get_user_id());
+        $password_hashed = password_hash($passwrod, PASSWORD_DEFAULT);
+        $this->admin_data_model->update_password($id, $password_hashed);
     }
 
     private function _check_auth()
