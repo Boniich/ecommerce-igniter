@@ -91,6 +91,8 @@ $route['admin_settings/profile/update_admin_profile'] = 'admin_panel/settings/ad
 $route['admin_settings/password'] = 'admin_panel/settings/admin_settings/index_password';
 $route['admin_settings/password/update_admin_password'] = 'admin_panel/settings/admin_settings/update_admin_password';
 
+$route['client_settings/profile'] = 'clients/settings/client_settings/index';
+
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
