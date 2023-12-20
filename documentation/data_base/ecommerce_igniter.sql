@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-12-2023 a las 19:02:47
+-- Tiempo de generación: 20-12-2023 a las 19:41:04
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -62,8 +62,7 @@ CREATE TABLE `clients` (
 --
 
 INSERT INTO `clients` (`id`, `full_name`, `image`, `email`, `password`, `dni`) VALUES
-(7, 'Ezequiel Perez', 'clients/profile_image/admin-profile-image-id-7.png', 'ezequieldbo25@gmail.com', '$2y$10$sMZHu8/jPHesi64D1cjC1Of0BTGobovIxPJpSdNneukIQ6B7dSo/i', '66'),
-(8, 'juan', NULL, 'juan22@gmail.com', '123456', '12678318'),
+(8, 'juan', NULL, 'juan22@gmail.com', '$2y$10$aKS2OYrzRCNl5PoQsUao.uK3zXD4e5TYEzySXc46c7EjR6nSXwdH6', '123'),
 (15, 'ezequieldbo25@gmail.com', NULL, 'ezequieldbo24@gmail.com', '123456', '12678318'),
 (16, 'nuevo', NULL, 'nuevo@gmail.com', '123456', '11111'),
 (17, '222', NULL, 'ezequieldbo225@gmail.com', '12345622', '126783182'),
@@ -100,7 +99,6 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `description`, `image`, `stock`, `price`) VALUES
-(20, 'VIDEO GEFORCE RTX 4080 16GB MSI GAMING X TRIO', '', 'products/msi-video-card.jpg', 5, 100),
 (21, 'AURICULARES GAMING TRUST BLIZZ GXT 450 7.1 RGB', 'asas', 'products/auriculares-gaming-gxt-322-carus-trust-0.jpg', 22, 22),
 (22, 'Procesador AMD Ryzen 9 5900X AM4', '', 'products/100-100000909WOF.png', 10, 474),
 (23, 'SILLA GAMER GAMING CHAIR IN7126 BLACK/RED', 'este e sun product', 'products/silla-gamer-gaming.jpg', 45, 45),
@@ -163,23 +161,7 @@ CREATE TABLE `shopping_car` (
 --
 
 INSERT INTO `shopping_car` (`client_id`, `product_id`, `product_amount`) VALUES
-(8, 20, 4),
-(8, 20, 4),
-(8, 25, 4),
-(7, 21, 5),
-(21, 20, 1),
-(7, 20, 1),
-(7, 22, 1),
-(7, 23, 1),
-(7, 24, 1),
-(7, 28, 1),
-(7, 27, 1),
-(7, 30, 1),
-(7, 33, 1),
-(7, 40, 1),
-(7, 26, 1),
-(7, 25, 1),
-(7, 29, 1);
+(8, 25, 4);
 
 --
 -- Índices para tablas volcadas
