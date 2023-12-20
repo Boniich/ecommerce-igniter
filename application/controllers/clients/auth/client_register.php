@@ -30,8 +30,8 @@ class Client_register extends CI_Controller
 
         if ($is_data_valid) {
             if ($this->client_register_model->register($this->userData)) {
-                if ($this->client_login_model->login($this->userData['email'], $this->userData['password'])) {
-                    $id = $this->client_login_model->_get_client_id();
+                if ($this->client_login_model->login($this->userData['email'])) {
+                    $id = $this->client_login_model->get_client_id();
                     $this->sessions_library->authenticate_client($id);
                     redirect('products');
                 }
@@ -53,7 +53,8 @@ class Client_register extends CI_Controller
         } else if ($this->client_register_model->check_dni($dni)) {
             $this->_get_dni_already_taked_error();
         } else {
-            $this->userData = array('full_name' => $full_name, 'dni' => $dni, 'email' => $email, 'password' => $password);
+            $password_hashed = password_hash($password, PASSWORD_DEFAULT);
+            $this->userData = array('full_name' => $full_name, 'dni' => $dni, 'email' => $email, 'password' => $password_hashed);
             return true;
         }
     }
