@@ -21,15 +21,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <?php echo form_open('admin_settings/password/update_admin_password'); ?>
                 <div class="col mb-3">
                     <label for="full_name" class="form-label">Contraseña actual</label>
-                    <input type="text" name="old_password" class="form-control" id="full_name" required>
+                    <input type="password" name="old_password" class="form-control" id="full_name" required>
                 </div>
                 <div class="col mb-3">
                     <label for="full_name" class="form-label">Nueva contraseña</label>
-                    <input type="text" name="new_password" class="form-control" id="full_name" required>
+                    <input type="password" name="new_password" class="form-control" id="full_name" required>
                 </div>
                 <div class="col mb-3">
                     <label for="full_name" class="form-label">Repite nueva contraseña</label>
-                    <input type="text" name="confirm_new_password" class="form-control" id="full_name" required>
+                    <input type="password" name="confirm_new_password" class="form-control" id="full_name" required>
                 </div>
                 <div class="col mt-4">
                     <button type="submit" name="submit" class="btn btn-success">Cambiar contraseña</button>
