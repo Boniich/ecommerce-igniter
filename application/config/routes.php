@@ -92,6 +92,7 @@ $route['admin_settings/password'] = 'admin_panel/settings/admin_settings/index_p
 $route['admin_settings/password/update_admin_password'] = 'admin_panel/settings/admin_settings/update_admin_password';
 
 $route['client_settings/profile'] = 'clients/settings/client_settings/index';
+$route['client_settings/profile/update_client_profile'] = 'clients/settings/client_settings/update_client_profile';
 
 
 $route['404_override'] = '';
