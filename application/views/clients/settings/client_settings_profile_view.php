@@ -19,7 +19,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
             <div class="w-50 bg-light shadow p-3 mb-5 bg-body rounded border border-secondary rounded-3">
                 <?php foreach ($client_data as $data) : ?>
-                    <?php echo form_open_multipart('admin_settings/profile/update_admin_profile'); ?>
+                    <?php echo form_open_multipart('client_settings/profile/update_client_profile'); ?>
                     <div class="d-flex mb-3">
                         <?php if ($data['image'] == NULL || $data['image'] == '') {
                             $image = './assets/image-profile.png';
@@ -42,8 +42,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <input type="email" name="email" class="form-control" id="email" value="<?php echo $data['email'] ?>" max="70" required>
                     </div>
                     <div class="col">
-                        <label for="email" class="form-label">DNI</label>
-                        <input type="email" name="dni" class="form-control" id="email" value="<?php echo $data['dni'] ?>" max="70" required>
+                        <label for="dni" class="form-label">DNI</label>
+                        <input type="dni" name="dni" class="form-control" id="dni" value="<?php echo $data['dni'] ?>" max="70" required>
                     </div>
 
                     <div class=" col mt-4">
