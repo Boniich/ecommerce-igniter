@@ -162,6 +162,9 @@ class Admin_panel_client extends CI_Controller
         if ($this->upload->do_upload('profile_image')) {
             $image = 'clients/' . $this->upload->data('file_name');
             return $image;
+        } else {
+            $this->session->set_flashdata('error_alert', 'Ups! No pudimos cargar la imagen');
+            redirect('admin_panel/clients');
         }
     }
 

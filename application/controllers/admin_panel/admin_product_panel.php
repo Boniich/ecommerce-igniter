@@ -37,6 +37,7 @@ class Admin_product_panel extends CI_Controller
         $this->load->view('navs/modals/exit_modal');
         $this->load->view('admin_panel/products/admin_products_index');
         $this->load->view('feedback/successfully_alert');
+        $this->load->view('feedback/error_alert');
         $this->load->view('admin_panel/products/show_products_table');
         $this->load->view($this->_path_view_folder . '/modals/create_product_modal');
         $this->load->view($this->_path_view_folder . '/modals/update_product_modal');
@@ -146,6 +147,9 @@ class Admin_product_panel extends CI_Controller
         if ($this->upload->do_upload('image')) {
             $image = 'products/' . $this->upload->data('file_name');
             return $image;
+        } else {
+            $this->session->set_flashdata('error_alert', 'Ups! No pudimos cargar la imagen');
+            redirect('admin_panel/products');
         }
     }
 
