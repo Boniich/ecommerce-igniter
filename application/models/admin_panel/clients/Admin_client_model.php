@@ -10,12 +10,17 @@ class Admin_client_model extends CI_Model
         $this->load->database();
     }
 
-    public function get_all_clients()
+    public function get_clients($limit, $page)
     {
-        $query = $this->db->get($this->_table);
+        $query = $this->db->limit($limit, $page)->get($this->_table);
         $result = $query->result_array();
 
         return $result;
+    }
+
+    public function count_clients()
+    {
+        return $this->db->count_all_results($this->_table);
     }
 
     public function create_client($data)

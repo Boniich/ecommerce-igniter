@@ -44,7 +44,6 @@
     let inputId = document.getElementById('idUpdateClient');
     let inputFullName = document.getElementById('updateClientName');
     let inputEmail = document.getElementById('updateClientEmail');
-    let inputPassword = document.getElementById('updateClientPassword');
     let inputDni = document.getElementById('updateClientDNI');
 
 
@@ -60,7 +59,6 @@
                 let response = JSON.parse(this.responseText);
                 inputFullName.value = response[0].full_name;
                 inputEmail.value = response[0].email;
-                inputPassword.value = response[0].password;
                 inputDni.value = response[0].dni;
             }
         }
@@ -71,7 +69,6 @@
     updateClientModal.addEventListener('hide.bs.modal', function(event) {
         inputFullName.value = ''
         inputEmail.value = ''
-        inputPassword.value = ''
         inputDni.value = ''
     });
 </script>

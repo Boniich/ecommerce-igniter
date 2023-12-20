@@ -4,6 +4,10 @@ class Admin_product_panel extends CI_Controller
 {
 
     private string $_path_view_folder = 'admin_panel/products/';
+    private string $base_url;
+    private int $per_page;
+    private int $page;
+    private int $count_products = 0;
 
     public function __construct()
     {
@@ -11,26 +15,29 @@ class Admin_product_panel extends CI_Controller
         $this->load->helper('form');
         $this->load->helper('url_helper');
         $this->load->model('admin_panel/products/admin_product_model');
-        $this->load->model('admin_panel/admin_data_model');
         $this->load->library('session');
+        $this->load->library('sessions/sessions_library');
+        $this->load->library('nav_library');
+        $this->load->library('pagination/pagination_library');
 
-        if (!$this->session->login_in) {
-            redirect('admin_login');
-        } else if ($this->session->login_in && $this->session->role != 'admin') {
-            redirect('products');
-        }
+        $this->base_url = 'http://localhost/ecommerceIgniter/admin_panel/admin_product_panel/index/';
+        $this->pagination_library->set_base_url($this->base_url);
+        $this->_check_auth();
     }
 
     public function index()
     {
+        $this->_initiate_pagination();
+
         $data['title'] = 'Admin Panel - Productos';
-        $data['products'] = $this->admin_product_model->get_all_products();
-        $data['admin'] = $this->_get_admin_data();
+        $data['products'] = $this->admin_product_model->get_products($this->per_page, $this->page);
+        $data['links'] = $this->pagination_library->get_links();
         $this->load->view('head/head', $data);
-        $this->load->view('navs/admin_nav/admin_nav');
+        $this->nav_library->load_admin_nav();
         $this->load->view('navs/modals/exit_modal');
         $this->load->view('admin_panel/products/admin_products_index');
         $this->load->view('feedback/successfully_alert');
+        $this->load->view('feedback/error_alert');
         $this->load->view('admin_panel/products/show_products_table');
         $this->load->view($this->_path_view_folder . '/modals/create_product_modal');
         $this->load->view($this->_path_view_folder . '/modals/update_product_modal');
@@ -54,10 +61,9 @@ class Admin_product_panel extends CI_Controller
     {
         $data['product'] = $this->admin_product_model->get_one_product($id);
         $data['title'] = $data['product'][0]['name'];
-        $data['admin'] = $this->_get_admin_data();
         $data['id'] = $id;
         $this->load->view('head/head', $data);
-        $this->load->view('navs/admin_nav/admin_nav');
+        $this->nav_library->load_admin_nav();
         $this->load->view('navs/modals/exit_modal');
         $this->load->view('admin_panel/products/product_details/show_product_index');
         $this->load->view('admin_panel/products/product_details/show_product_details');
@@ -141,13 +147,27 @@ class Admin_product_panel extends CI_Controller
         if ($this->upload->do_upload('image')) {
             $image = 'products/' . $this->upload->data('file_name');
             return $image;
+        } else {
+            $this->session->set_flashdata('error_alert', 'Ups! No pudimos cargar la imagen');
+            redirect('admin_panel/products');
         }
     }
 
-    private function _get_admin_data()
+    private function _check_auth()
     {
-        $id = $this->session->id;
-        $data = $this->admin_data_model->get_admin($id);
-        return $data;
+        if (!$this->sessions_library->check_login_in()) {
+            redirect('admin_login');
+        } else if ($this->sessions_library->check_login_in() && !$this->sessions_library->check_admin_role()) {
+            redirect('products');
+        }
+    }
+
+    private function _initiate_pagination()
+    {
+        $this->pagination_library->set_uri_segment(4);
+        $this->count_products = $this->admin_product_model->count_products();
+        $this->pagination_library->set_pagination_config($this->count_products);
+        $this->per_page = $this->pagination_library->get_per_page();
+        $this->page = $this->pagination_library->get_uri_segment();
     }
 }

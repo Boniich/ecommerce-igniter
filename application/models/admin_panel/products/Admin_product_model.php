@@ -10,9 +10,9 @@ class Admin_product_model extends CI_Model
         $this->load->database();
     }
 
-    public function get_all_products()
+    public function get_products($limit, $page)
     {
-        $query = $this->db->get($this->_table);
+        $query = $this->db->limit($limit, $page)->get($this->_table);
         $result = $query->result_array();
 
         return $result;
@@ -22,6 +22,11 @@ class Admin_product_model extends CI_Model
     {
         $query = $this->db->where('id', $id)->get($this->_table);
         return $query->result_array();
+    }
+
+    public function count_products()
+    {
+        return $this->db->count_all_results($this->_table);
     }
 
     public function delete_product($id)

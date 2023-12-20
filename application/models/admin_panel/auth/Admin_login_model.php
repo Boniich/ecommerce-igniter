@@ -4,6 +4,7 @@ class Admin_login_model extends CI_Model
 {
     private string $table = 'admins';
     private int $_admin_id = 0;
+    private string $hashed_password = '';
 
     public function __construct()
     {
@@ -11,21 +12,21 @@ class Admin_login_model extends CI_Model
     }
 
 
-    private function validate_admin_data($email, $password)
+    private function validate_admin_data($email)
     {
         $this->db->where('email', $email);
-        $this->db->where('password', $password);
         $query = $this->db->get($this->table);
 
         return $query;
     }
 
-    public function login($email, $password)
+    public function login($email)
     {
-        $query = $this->validate_admin_data($email, $password);
+        $query = $this->validate_admin_data($email);
         $is_admin = $query->num_rows() == 1 ?? true ?? false;
         if ($is_admin) {
             $this->set_admin_id($query);
+            $this->set_hashed_password($query);
         }
         return $is_admin;
     }
@@ -39,5 +40,16 @@ class Admin_login_model extends CI_Model
     public function get_admin_id()
     {
         return $this->_admin_id;
+    }
+
+    private function set_hashed_password($query)
+    {
+        $admin = $query->row();
+        $this->hashed_password = $admin->password;
+    }
+
+    public function get_hashed_password()
+    {
+        return $this->hashed_password;
     }
 }

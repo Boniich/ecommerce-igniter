@@ -37,6 +37,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <?php endforeach; ?>
         </tbody>
     </table>
+    <div class="my-4">
+        <?php echo $links; ?>
+    </div>
     </div>
 </body>
 

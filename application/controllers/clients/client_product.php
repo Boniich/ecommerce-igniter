@@ -2,6 +2,10 @@
 
 class Client_product extends CI_Controller
 {
+    private string $base_url;
+    private int $per_page;
+    private int $page;
+    private int $count_products = 0;
 
     public function __construct()
     {
@@ -9,17 +13,22 @@ class Client_product extends CI_Controller
         $this->load->helper('form');
         $this->load->helper('url_helper');
         $this->load->model('clients/client_product_model');
-        $this->load->model('clients/client_data_model');
-        $this->load->model('admin_panel/admin_data_model');
-        $this->load->library('session');
+        $this->load->library('nav_library');
+        $this->load->library('pagination/pagination_library');
+
+        $this->base_url = 'http://localhost/ecommerceIgniter/clients/client_product/index/';
+        $this->pagination_library->set_base_url($this->base_url);
     }
 
     public function index()
     {
+        $this->_initiate_pagination();
+
         $data['title'] = 'Productos';
-        $data['products'] = $this->client_product_model->get_all_products();
+        $data['products'] = $this->client_product_model->get_products($this->per_page, $this->page);
+        $data['links'] = $this->pagination_library->get_links();
         $this->load->view('head/head', $data);
-        $this->_get_nav();
+        $this->nav_library->load_common_nav();
         $this->load->view('navs/modals/exit_modal');
         $this->load->view('clients/show_products_index');
         $this->load->view('clients/show_product_list');
@@ -30,40 +39,20 @@ class Client_product extends CI_Controller
         $data['product'] = $this->client_product_model->get_one_product($id);
         $data['title'] = $data['product'][0]['name'];
         $this->load->view('head/head', $data);
-        $this->_get_nav();
+        $this->nav_library->load_common_nav();
+        $this->load->view('feedback/successfully_alert');
+        $this->load->view('feedback/error_alert');
         $this->load->view('navs/modals/exit_modal');
         $this->load->view('clients/show_product_details');
     }
 
-    private function _get_client_data()
+
+    private function _initiate_pagination()
     {
-        $id = $this->session->id;
-        $data = $this->client_data_model->get_client($id);
-        return $data;
-    }
-
-    private function _get_admin_data()
-    {
-        $id = $this->session->id;
-        $data = $this->admin_data_model->get_admin($id);
-        return $data;
-    }
-
-    private function _get_nav()
-    {
-
-        if (!$this->session->login_in) {
-            $this->load->view('navs/unauthenticated_nav/unauthenticated_nav');
-        }
-
-        if ($this->session->role === "client") {
-            $data['client'] = $this->_get_client_data();
-            $this->load->view('navs/client_nav/client_nav', $data);
-        }
-
-        if ($this->session->role === "admin") {
-            $data['admin'] = $this->_get_admin_data();
-            $this->load->view('navs/admin_nav/admin_nav', $data);
-        }
+        $this->pagination_library->set_uri_segment(4);
+        $this->count_products = $this->client_product_model->count_products();
+        $this->pagination_library->set_pagination_config($this->count_products);
+        $this->per_page = $this->pagination_library->get_per_page();
+        $this->page = $this->pagination_library->get_uri_segment();
     }
 }

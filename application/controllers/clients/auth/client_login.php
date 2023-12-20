@@ -8,7 +8,8 @@ class Client_login extends CI_Controller
         $this->load->helper('form');
         $this->load->helper('url_helper');
         $this->load->model('clients/auth/client_login_model');
-        $this->load->library('session');
+        $this->load->library('sessions/sessions_library');
+        $this->load->library('nav_library');
     }
 
     public function index()
@@ -17,7 +18,7 @@ class Client_login extends CI_Controller
 
         $data['title'] = 'Ingreso de Clientes';
         $this->load->view('head/head', $data);
-        $this->load->view('navs/unauthenticated_nav/unauthenticated_nav');
+        $this->nav_library->load_unauthenticated_nav();
         $this->load->view('auth/client_auth/client_login');
     }
 
@@ -29,21 +30,32 @@ class Client_login extends CI_Controller
         $email = $this->input->post('email');
         $password = $this->input->post('password');
 
-        if ($this->client_login_model->login($email, $password)) {
-            $this->_set_auth_data();
-            redirect('products');
+        if ($this->client_login_model->login($email)) {
+
+            $actual_password = $this->client_login_model->get_hashed_password();
+            if (password_verify($password, $actual_password)) {
+                $id = $this->client_login_model->get_client_id();
+                $this->sessions_library->authenticate_client($id);
+                redirect('products');
+            } else {
+                $data['error_message'] = 'La Contraseña es incorrecta';
+                $data['title'] = 'Ingreso de Clientes';
+                $this->load->view('head/head', $data);
+                $this->nav_library->load_unauthenticated_nav();
+                $this->load->view('auth/client_auth/client_login', $data);
+            }
         } else {
-            $data['error_message'] = 'Email o contraseña incorrectas!';
+            $data['error_message'] = 'Email es incorrecto';
             $data['title'] = 'Ingreso de Clientes';
             $this->load->view('head/head', $data);
-            $this->load->view('navs/unauthenticated_nav/unauthenticated_nav');
-            $this->load->view('auth/client_auth/client_login');
+            $this->nav_library->load_unauthenticated_nav();
+            $this->load->view('auth/client_auth/client_login', $data);
         }
     }
 
     public function logout()
     {
-        if ($this->session->login_in && $this->session->role === 'client') {
+        if ($this->sessions_library->check_login_in() && $this->sessions_library->check_client_role()) {
             session_destroy();
             redirect('client_login');
         } else {
@@ -51,21 +63,11 @@ class Client_login extends CI_Controller
         }
     }
 
-    private function _set_auth_data()
-    {
-        $id = $this->client_login_model->_get_client_id();
-        $auth_data = array('id' => $id, 'login_in' => true, 'role' => 'client');
-        $this->session->set_userdata($auth_data);
-    }
-
     private function _check_auth()
     {
-        $login_in = $this->session->login_in;
-        $role = $this->session->role;
-
-        if ($login_in && $role  === 'admin') {
+        if ($this->sessions_library->check_admin_role()) {
             redirect('admin_panel/products');
-        } else if ($login_in && $role == 'client') {
+        } else if ($this->sessions_library->check_client_role()) {
             redirect('products');
         }
     }

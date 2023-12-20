@@ -65,6 +65,13 @@ $route['do_client_register'] = 'clients/auth/client_register/do_client_register'
 $route['products'] = 'clients/client_product/index';
 $route['product/(:num)'] = 'clients/client_product/get_product_details/$1';
 
+
+$route['shopping_car'] = 'clients/shopping_car/shopping_car';
+$route['add_product_to_car/(:num)'] = 'clients/shopping_car/shopping_car/add_product_to_car/$1';
+$route['update_product_from_car/(:num)/(:num)'] = 'clients/shopping_car/shopping_car/update_product_from_shopping_car/$1/$2';
+$route['delete_product_from_car/(:num)/(:num)'] = 'clients/shopping_car/shopping_car/delete_product_from_shopping_car/$1/$2';
+
+
 $route['admin_panel/products'] = 'admin_panel/admin_product_panel/index';
 $route['show_product_data/(:num)'] = 'admin_panel/admin_product_panel/show_product_data/$1';
 $route['admin_panel/product/(:num)'] = 'admin_panel/admin_product_panel/get_product_details/$1';
@@ -78,6 +85,18 @@ $route['admin_panel/client/(:num)'] = 'admin_panel/admin_panel_client/get_client
 $route['create_client'] = 'admin_panel/admin_panel_client/create_client';
 $route['update_client'] = 'admin_panel/admin_panel_client/update_client/$1';
 $route['delete_client/(:num)'] = 'admin_panel/admin_panel_client/delete_client/$1';
+
+$route['admin_settings/profile'] = 'admin_panel/settings/admin_settings/index';
+$route['admin_settings/profile/update_admin_profile'] = 'admin_panel/settings/admin_settings/update_admin_profile';
+$route['admin_settings/password'] = 'admin_panel/settings/admin_settings/index_password';
+$route['admin_settings/password/update_admin_password'] = 'admin_panel/settings/admin_settings/update_admin_password';
+
+$route['client_settings/profile'] = 'clients/settings/client_settings/index';
+$route['client_settings/profile/update_client_profile'] = 'clients/settings/client_settings/update_client_profile';
+$route['client_settings/password'] = 'clients/settings/client_settings/index_password';
+$route['client_settings/password/update_client_password'] = 'clients/settings/client_settings/update_client_password';
+
+
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

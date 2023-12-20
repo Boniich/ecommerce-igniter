@@ -12,10 +12,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <li class="nav-item">
                     <a class="nav-link text-white" aria-current="page" href="<?php echo base_url('products'); ?>">Productos</a>
                 </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="#">Mi Carrito</a>
-                </li>
                 <li class="nav-item">
+                    <a class="nav-link text-white" href="<?php echo base_url('shopping_car'); ?>">Mi Carrito</a>
+                </li>
+                <!--<li class="nav-item">
                     <a class="nav-link" href="#">Mis ordenes</a>
                 </li> -->
             </ul>
@@ -33,7 +33,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <?php endforeach; ?>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Ajustes</a></li>
+                        <li><a class="dropdown-item" href="<?php echo base_url('client_settings/profile'); ?>">Ajustes</a></li>
                         <li><a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exitModal">Salir</a></li>
                     </ul>
                 </div>
