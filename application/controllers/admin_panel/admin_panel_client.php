@@ -58,11 +58,12 @@ class Admin_panel_client extends CI_Controller
             $this->_show_dni_already_taken_alert();
         }
 
+        $password_hashed = password_hash($password, PASSWORD_DEFAULT);
 
         $client = array(
             'full_name' => $full_name,
             'email' => $email,
-            'password' => $password,
+            'password' => $password_hashed,
             'dni' => $dni,
             'image' => $profile_image,
         );
@@ -88,12 +89,14 @@ class Admin_panel_client extends CI_Controller
             $this->_show_dni_already_taken_alert();
         }
 
+        $password_hashed = password_hash($password, PASSWORD_DEFAULT);
+
         if (empty($_FILES['profile_image']['name'])) {
             $productData = array(
                 'full_name' => $full_name,
                 'email' => $email,
                 'dni' => $dni,
-                'password' => $password,
+                'password' => $password_hashed,
             );
         } else {
             $this->_delete_actual_image($id);
@@ -102,7 +105,7 @@ class Admin_panel_client extends CI_Controller
                 'full_name' => $full_name,
                 'email' => $email,
                 'dni' => $dni,
-                'password' => $password,
+                'password' => $password_hashed,
                 'image' => $image,
             );
         }
