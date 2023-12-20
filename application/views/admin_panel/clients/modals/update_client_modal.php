@@ -60,7 +60,6 @@
                 let response = JSON.parse(this.responseText);
                 inputFullName.value = response[0].full_name;
                 inputEmail.value = response[0].email;
-                inputPassword.value = response[0].password;
                 inputDni.value = response[0].dni;
             }
         }
