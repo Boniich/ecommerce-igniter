@@ -44,7 +44,6 @@
     let inputId = document.getElementById('idUpdateClient');
     let inputFullName = document.getElementById('updateClientName');
     let inputEmail = document.getElementById('updateClientEmail');
-    let inputPassword = document.getElementById('updateClientPassword');
     let inputDni = document.getElementById('updateClientDNI');
 
 
@@ -70,7 +69,6 @@
     updateClientModal.addEventListener('hide.bs.modal', function(event) {
         inputFullName.value = ''
         inputEmail.value = ''
-        inputPassword.value = ''
         inputDni.value = ''
     });
 </script>
