@@ -11,7 +11,7 @@ class Client_settings extends CI_Controller
         $this->load->library('sessions/sessions_library');
         $this->load->library('session');
         $this->load->library('nav_library');
-        $this->load->model('admin_panel/client_data_model');
+        $this->load->model('clients/client_data_model');
 
         $this->_check_auth();
     }
@@ -26,6 +26,17 @@ class Client_settings extends CI_Controller
         $this->load->view('feedback/successfully_alert');
         $this->load->view('feedback/error_alert');
         $this->load->view('clients/settings/client_settings_profile_view');
+    }
+
+    public function index_password()
+    {
+        $data['title'] = 'Ajustes - Password';
+        $this->load->view('head/head', $data);
+        $this->nav_library->load_client_nav();
+        $this->load->view('navs/modals/exit_modal');
+        $this->load->view('feedback/successfully_alert');
+        $this->load->view('feedback/error_alert');
+        $this->load->view('clients/settings/client_settings_password_view');
     }
 
     private function _check_auth()
@@ -76,6 +87,33 @@ class Client_settings extends CI_Controller
             redirect('client_settings/profile');
         }
     }
+
+
+    public function update_client_password()
+    {
+        $id = $this->sessions_library->get_user_id();
+        $old_passwrod = $this->input->post('old_password');
+        $new_password = $this->input->post('new_password');
+        $confirm_new_password = $this->input->post('confirm_new_password');
+
+        $old_hashed_password = $this->client_data_model->get_old_password($this->sessions_library->get_user_id());
+        if (password_verify($old_passwrod, $old_hashed_password)) {
+            if ($new_password === $confirm_new_password) {
+                $password_hashed = password_hash($new_password, PASSWORD_DEFAULT);
+                $this->client_data_model->update_password($id, $password_hashed);
+
+                $this->session->set_flashdata('sucessfully_alert', 'La contraseña ha sido actualizada con exito!');
+                redirect('client_settings/password');
+            } else {
+                $this->session->set_flashdata('error_alert', 'La nueva contraseña no coincide con su confirmacion!');
+                redirect('client_settings/password');
+            }
+        } else {
+            $this->session->set_flashdata('error_alert', 'La contraseña actual no coincide!');
+            redirect('client_settings/password');
+        }
+    }
+
 
 
     private function _do_upload()

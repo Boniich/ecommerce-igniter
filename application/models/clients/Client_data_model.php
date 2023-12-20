@@ -55,4 +55,22 @@ class Client_data_model extends CI_Model
         $result = $this->db->update($this->_table, $data);
         return $result;
     }
+
+    public function get_old_password($id)
+    {
+        $query = $this->db->select('password')->where('id', $id)->get($this->_table);
+
+        $row = $query->row();
+
+        $password = $row->password;
+
+        return $password;
+    }
+
+    public function update_password($id, $password)
+    {
+        $this->db->where('id', $id);
+        $result = $this->db->update($this->_table, array('password' => $password));
+        return $result;
+    }
 }
