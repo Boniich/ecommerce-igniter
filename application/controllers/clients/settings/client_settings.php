@@ -36,4 +36,68 @@ class Client_settings extends CI_Controller
             redirect('products');
         }
     }
+
+
+    public function update_client_profile()
+    {
+        $id = $this->sessions_library->get_user_id();
+        $full_name = $this->input->post('full_name');
+        $dni = $this->input->post('dni');
+        $email = $this->input->post('email');
+
+        if ($this->client_data_model->check_email($id, $email)) {
+            $this->session->set_flashdata('error_alert', 'El email que has ingresado ya se encuentra en uso!');
+            redirect('client_settings/profile');
+        }
+
+        if ($this->client_data_model->check_dni($id, $dni)) {
+            $this->session->set_flashdata('error_alert', 'El DNI que has ingresado ya se encuentra en uso!');
+            redirect('client_settings/profile');
+        }
+
+        if (empty($_FILES['image']['name'])) {
+            $data = array(
+                'full_name' => $full_name,
+                'dni' => $dni,
+                'email' => $email,
+            );
+        } else {
+            $image = $this->_do_upload();
+            $data = array(
+                'full_name' => $full_name,
+                'dni' => $dni,
+                'email' => $email,
+                'image' => $image,
+            );
+        }
+
+        if ($this->client_data_model->update_client_profile($id, $data)) {
+            $this->session->set_flashdata('sucessfully_alert', 'Informacion de perfil actualizada');
+            redirect('client_settings/profile');
+        }
+    }
+
+
+    private function _do_upload()
+    {
+        $folder_name = 'clients/profile_image';
+        $id = $this->sessions_library->get_user_id();
+
+        $config['upload_path'] = './uploads/' . $folder_name;
+        $config['allowed_types'] = 'jpg|png';
+        $config['file_name'] = 'admin-profile-image-id-' . $id;
+        $config['overwrite'] = TRUE;
+        $config['max_width'] = 1000;
+        $config['max_height'] = 1000;
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('image')) {
+            $image = $folder_name . '/' . $this->upload->data('file_name');
+            return $image;
+        } else {
+            $this->session->set_flashdata('error_alert', 'Ups! No pudimos cargar la imagen');
+            redirect('clients_settings/profile');
+        }
+    }
 }
