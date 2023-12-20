@@ -30,16 +30,26 @@ class Client_login extends CI_Controller
         $email = $this->input->post('email');
         $password = $this->input->post('password');
 
-        if ($this->client_login_model->login($email, $password)) {
-            $id = $this->client_login_model->_get_client_id();
-            $this->sessions_library->authenticate_client($id);
-            redirect('products');
+        if ($this->client_login_model->login($email)) {
+
+            $actual_password = $this->client_login_model->get_hashed_password();
+            if (password_verify($password, $actual_password)) {
+                $id = $this->client_login_model->get_client_id();
+                $this->sessions_library->authenticate_client($id);
+                redirect('products');
+            } else {
+                $data['error_message'] = 'La Contraseña es incorrecta';
+                $data['title'] = 'Ingreso de Clientes';
+                $this->load->view('head/head', $data);
+                $this->nav_library->load_unauthenticated_nav();
+                $this->load->view('auth/client_auth/client_login', $data);
+            }
         } else {
-            $data['error_message'] = 'Email o contraseña incorrectas!';
+            $data['error_message'] = 'Email es incorrecto';
             $data['title'] = 'Ingreso de Clientes';
             $this->load->view('head/head', $data);
             $this->nav_library->load_unauthenticated_nav();
-            $this->load->view('auth/client_auth/client_login');
+            $this->load->view('auth/client_auth/client_login', $data);
         }
     }
 
