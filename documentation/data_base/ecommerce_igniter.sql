@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-10-2023 a las 16:19:54
+-- Tiempo de generación: 20-12-2023 a las 19:02:47
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -40,7 +40,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `full_name`, `email`, `password`, `image`) VALUES
-(1, 'admin', 'admin@gmail.com', '123456', NULL);
+(1, 'Ezequiel bonino', 'admin@gmail.com', '$2y$10$WwJVtv8yv9Krq0Yvu.oY3.D/CLs.qZIe//KbEryREhq0pZsOgNTxa', 'admin/profile_image/admin-profile-image-id-1.png');
 
 -- --------------------------------------------------------
 
@@ -62,8 +62,7 @@ CREATE TABLE `clients` (
 --
 
 INSERT INTO `clients` (`id`, `full_name`, `image`, `email`, `password`, `dni`) VALUES
-(5, 'Pietro Valesss', 'clients/image-profile.png', 'pietro2@gmail.com', '123456', '45.555.666'),
-(7, 'ezequieldbo25@gmail.com', NULL, 'ezequieldbo25@gmail.com', '123456', '333333'),
+(7, 'Ezequiel Perez', 'clients/profile_image/admin-profile-image-id-7.png', 'ezequieldbo25@gmail.com', '$2y$10$sMZHu8/jPHesi64D1cjC1Of0BTGobovIxPJpSdNneukIQ6B7dSo/i', '66'),
 (8, 'juan', NULL, 'juan22@gmail.com', '123456', '12678318'),
 (15, 'ezequieldbo25@gmail.com', NULL, 'ezequieldbo24@gmail.com', '123456', '12678318'),
 (16, 'nuevo', NULL, 'nuevo@gmail.com', '123456', '11111'),
@@ -74,7 +73,12 @@ INSERT INTO `clients` (`id`, `full_name`, `image`, `email`, `password`, `dni`) V
 (21, 'eze', NULL, 'eze222@gmail.com', '123456', '35.855.666'),
 (22, 'eze45', NULL, 'ezequieldbo35@gmail.com', '123456', '12678316'),
 (23, 'pedro', NULL, 'ezequieldbo77@gmail.com', '123456', '45.122.666'),
-(24, 'alejandro', NULL, 'alejandro@gmail.com', '123456', '454545');
+(24, 'alejandro', NULL, 'alejandro@gmail.com', '123456', '454545'),
+(25, 'Pietro Carlos', NULL, 'ezequieldbo44@gmail.com', '123456', '45.555.414'),
+(26, 'cliente nuevo', NULL, 'clientenuevo@gmail.com', '123456', '1111144'),
+(27, 'aka', NULL, 'aka@gmail.com', '123456', '44455566'),
+(28, 'Lola Fernandez', NULL, 'lola@gmail.com', '$2y$10$ejmh83NrFo6GA4npn67Rp.6dL0uVk9svn.lKYn4g21QdLUCDVU7I.', '454986'),
+(29, 'Lola Bonino', NULL, 'lola2@gmail.com', '$2y$10$2RemwmOfQlKWnnHbPRcx2eyqwCnNgkS3HNZLtAV0eCjDYdPbb90ey', '4477');
 
 -- --------------------------------------------------------
 
@@ -96,7 +100,6 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `description`, `image`, `stock`, `price`) VALUES
-(19, 'MICRO INTEL CORE I3 10105F COMETLAKE S1200 BOX SIMIL 10100F', 'asas', 'products/micro-intel-core-i3-10105f-cometlake-s1200-box-simil-10100f-0.jpg', 2, 2),
 (20, 'VIDEO GEFORCE RTX 4080 16GB MSI GAMING X TRIO', '', 'products/msi-video-card.jpg', 5, 100),
 (21, 'AURICULARES GAMING TRUST BLIZZ GXT 450 7.1 RGB', 'asas', 'products/auriculares-gaming-gxt-322-carus-trust-0.jpg', 22, 22),
 (22, 'Procesador AMD Ryzen 9 5900X AM4', '', 'products/100-100000909WOF.png', 10, 474),
@@ -138,7 +141,45 @@ INSERT INTO `products` (`id`, `name`, `description`, `image`, `stock`, `price`) 
 (58, 'ww', 'ww', 'products/ignaiter-image-project7.png', 22, 22),
 (59, '2', '2', NULL, 2, 2),
 (60, 'ww', 'ww', NULL, 22, 22),
-(61, 'ww', 'ww', NULL, 2, 2);
+(61, 'ww', 'ww', NULL, 2, 2),
+(64, 'www', 'ww', NULL, 22, 22),
+(65, 'asas', 'asas', NULL, 44, 11),
+(66, '22', 'asas', NULL, 44, 44);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `shopping_car`
+--
+
+CREATE TABLE `shopping_car` (
+  `client_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `product_amount` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `shopping_car`
+--
+
+INSERT INTO `shopping_car` (`client_id`, `product_id`, `product_amount`) VALUES
+(8, 20, 4),
+(8, 20, 4),
+(8, 25, 4),
+(7, 21, 5),
+(21, 20, 1),
+(7, 20, 1),
+(7, 22, 1),
+(7, 23, 1),
+(7, 24, 1),
+(7, 28, 1),
+(7, 27, 1),
+(7, 30, 1),
+(7, 33, 1),
+(7, 40, 1),
+(7, 26, 1),
+(7, 25, 1),
+(7, 29, 1);
 
 --
 -- Índices para tablas volcadas
@@ -165,6 +206,13 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `shopping_car`
+--
+ALTER TABLE `shopping_car`
+  ADD KEY `client_id` (`client_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -178,13 +226,24 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT de la tabla `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `shopping_car`
+--
+ALTER TABLE `shopping_car`
+  ADD CONSTRAINT `shopping_car_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `shopping_car_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
