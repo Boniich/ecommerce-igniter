@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-12-2023 a las 19:41:04
+-- Tiempo de generación: 21-12-2023 a las 17:51:30
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -63,10 +63,10 @@ CREATE TABLE `clients` (
 
 INSERT INTO `clients` (`id`, `full_name`, `image`, `email`, `password`, `dni`) VALUES
 (8, 'juan', NULL, 'juan22@gmail.com', '$2y$10$aKS2OYrzRCNl5PoQsUao.uK3zXD4e5TYEzySXc46c7EjR6nSXwdH6', '123'),
-(15, 'ezequieldbo25@gmail.com', NULL, 'ezequieldbo24@gmail.com', '123456', '12678318'),
+(15, 'Ezequiel Perez', NULL, 'ezequielperez@gmail.com', '$2y$10$geB/4XkFfYfOB8q8MKonwOo88X7KHcWY/EuPiBS9Jvb85lvGiWMXW', '12678318'),
 (16, 'nuevo', NULL, 'nuevo@gmail.com', '123456', '11111'),
 (17, '222', NULL, 'ezequieldbo225@gmail.com', '12345622', '126783182'),
-(18, 'Mirta', 'clients/client-image.png', 'mirta@gmail.com', '123456', '111.111.11'),
+(18, 'Mirta', 'clients/client-image.png', 'mirta@gmail.com', '$2y$10$zjvNzEFr8.Go7Jio7lHfI.MYkkhxOA.wqM3PithzGwSfr8qGbOWWq', '111.111.11'),
 (19, 'juansito', NULL, 'ezequieldbo19@gmail.com', '123456', '45.555.442'),
 (20, 'alan', NULL, 'alan@gmail.com', '123456', '15.555.666'),
 (21, 'eze', NULL, 'eze222@gmail.com', '123456', '35.855.666'),
