@@ -10,7 +10,7 @@ Despues de entregar el proyecto y aprobar la materia continue agregandole alguna
 
 Un pequeño video mostran y explicando el sitio web
 
-https://youtu.be/PFp2sduYeCg
+https://youtu.be/JjYjpaKnfM0
 
 ### Desarrolladores
 
