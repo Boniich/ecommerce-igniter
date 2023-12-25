@@ -1,14 +1,16 @@
-# Ecommerce Igniter 1.0
+# Ecommerce Igniter 1.1
 
 Proyecto de una tienda online creado para la materia Seminario de Lenguajes (PHP) 2023.
 
 Fue desarrollado utilizando Codeigniter 3 y bootstrap 5.
 
+Despues de entregar el proyecto y aprobar la materia continue agregandole algunas cosas mas, que no estaban en el enunciado dado por la materia pero que hacian mas completo el proyecto, algunas de estas cosas son: el carrito de compras, paginacion, ajustes, etc.
+
 ## Demo del proyecto
 
 Un pequeño video mostran y explicando el sitio web
 
-https://youtu.be/PFp2sduYeCg
+https://youtu.be/JjYjpaKnfM0
 
 ### Desarrolladores
 
@@ -25,14 +27,28 @@ GitHub: https://github.com/Boniich
 - Tanto el cliente, visitante y administrador pueden ver el HOME y productos, asi como los detalles de estos, pero la diferencia esta en:
 
 - Un visitante puede ver los productos y detalles de un producto pero no podra ver el boton de "agregar al carrito"
-- Un cliente vera un boton de "Agregar al Carrito" que de momento no tiene ninguna funcionalidad
+
+- Un cliente vera un boton de "Agregar al Carrito", la cantidad disponible del producto y una opcion para seleccionar cuanta cantidad desea comprar.
+
+- Un cliente podra agregar un producto al carrito de compras haciendo click en el boton de "agregar al carrito".
+
+- Un cliente podra ver, editar y eliminar todos los productos de su carrito de compras
+
+- Un cliente podra ver el total de todos los productos juntos de su carrito
+
 - Un administrador vera un mensaje que dice que los administradores no pueden comprar
 
 - Un Cliente podra registrarse e ingresar al sistema
 - Un cliente podra ver los detalles de los productos al hacer click en uno de ellos.
 
+- Un cliente podra cambiar su foto de perfil, nombre y apellido, dni, contraseña y email
+
+- Un administrador podra cambiar su foto de perfil, nombre y apellido, contraseña y email
+
 - Los administradores solo podran ingresar al sistema (si se encuentran registrados)
 - Los administradores tienen un panel especial en el cual pueden ver,agregar,editar o eliminar Productos y Clientes
+
+- Se ha agregado la paginacion para cada parte del sitio web que sea necesaria
 
 #### Estructra de Carpetas
 
@@ -43,8 +59,11 @@ GitHub: https://github.com/Boniich
     |__controllers
     |    |__admin_panel
     |        |__login
+    |        |__settings
     |    |__clients
     |        |__auth
+    |        |__settings
+    |        |__shopping_car
     |__models
     |   |__admin_panel
     |   |    |__auth
@@ -63,15 +82,19 @@ GitHub: https://github.com/Boniich
         |    |   |__modals
         |    |
         |    |__products
-        |        |__modals
-        |        |__product_details
-        |
+        |    |    |__modals
+        |    |    |__product_details
+        |    |
+        |    |__settings
         |
         |__auth
         |   |__admin_auth
         |   |__client_auth
         |
         |__clients
+        |  |__settings
+        |  |__shopping_car
+        |
         |__feedback
         |__head
         |__home
@@ -103,28 +126,31 @@ Contraseña: 123456
 Email: mirta@gmail.com  
 Contraseña: 123456
 
-Email: pietro2@gmail.com  
+Email: ezequielperez@gmail.com
 Contraseña: 123456
 
 ---
 
 ## Como ejecutar el proyecto
 
-### 1- Con el .rar de la entrega
+### 1- Clone el proyecto
 
-1- Abrir .rar  
-2- Correr xamp,wamp o cualquier otro entorno de desarrollo  
-3- Crear una base de datos en `phpmyadmin` o algun editor de base de datos con el nombre de `ecommerce_igniter`
-4- Ir a la carpeta `documentation/data_base` e importar ese archivo `ecommerce_igniter.sql` desde el mismo `phpmyadmin`
+1- Necesitas xamp o wamp con PHP 8.0.28 como maximo, si usas uno mas nuevo, puede haber incopatibilidades.
 
-Listo. El proyecto deberia funcionar correctamente.
+Te recomiendo el siguiente (xamp para windows): https://sourceforge.net/projects/xampp/files/XAMPP%20Windows/8.0.28/
 
-Recuerda, que si usas una PC de la UNLA, tienen problemas de puertos con wamp, por lo cual una vez solucionado eso debes habilitar la opcion de `port` en el archivo de config del proyecto
+Si utilizas linux o mac, puede encontrar el respectivo xamp aqui: https://sourceforge.net/projects/xampp/files/
 
-### 2- Con Git clone
+2- Prende tu entorno de desarrollo (xamp,wamp, etc). En el caso de XAMP, solo necesitas activar APACHE y MYSQL
 
-Si eres alguien de internet que esta viendo este proyecto, y quieres usar `git clone`, debes seguir los mismo pasos que antes, pero debes hacer un paso extra.
+3- Clona el proyecto usando `GIT` dentro de la carpeta correspondiente de entorno de desarrollo (en el caso de XAMP es `htdocs`)
 
-Ve a la parte de `config` y luego al archivo `config` y busca `$config['base_url']` (es uno de los primeros del archivo)
+4- Una vez clonaste el repo, cambia el nombre por defecto que da el repositorio `ecommerce-igniter` a `ecommerceIgniter`. Si no haces este paso tendras problemas para acceder a las diferentes URL del sitio
 
-Cambia `http://localhost/ecommerceIgniter/` por `http://localhost/ecommerce-igniter/`
+5- Abre tu `phpmyadmin` o tu programa/web de base de datos y crea una base de datos llamada `ecommerce_igniter`
+
+6- Importa el archivo `ecommerce_igniter.sql` que se encuentra dentro de la carpeta `documentation/data_base`
+
+7- Abre tu navegador e ingresa a la siguiente url `http://localhost/ecommerceIgniter/`
+
+8- Pruba las funcionalidades de la web
